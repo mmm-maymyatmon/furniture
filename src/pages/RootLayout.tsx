@@ -1,13 +1,11 @@
-import Header from '@/components/Header';
+import Header from '@/components/layouts/Header';
 import { Outlet } from 'react-router';
 
 function RootLayout() {
   return (
-    <div>
-      <Header/>
-      <div className='container'>
-        <Outlet />
-      </div>
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <Outlet />
     </div>
   );
 }
