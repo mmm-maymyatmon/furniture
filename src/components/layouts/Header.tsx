@@ -9,10 +9,9 @@ function Header() {
       <div className="container flex justify-between items-center h-16 mx-auto lg:px-0 px-4 ">
         <MainNavigation items={siteConfig.mainNav} />
         <MobileNavigation items={siteConfig.mainNav} />
-          <div className="flex items-center ">
-          <ModeToggle/>
-          </div>
-        
+        <div className="flex items-center ">
+          <ModeToggle />
+        </div>
       </div>
     </header>
   );

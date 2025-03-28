@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router';
 import type { MainNavItem } from '@/types';
 import { Icons } from '@/components/icons';
@@ -43,7 +42,11 @@ function MobileNavigation({ items }: MainNavigationProps) {
           <ScrollArea className="mt-6 h-[calc(100vh-8rem)] pb-6">
             <Accordion type="multiple" className="w-full">
               {items?.map((navItem, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-b">
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className="border-b"
+                >
                   <AccordionTrigger className="text-base font-medium hover:text-primary">
                     {navItem.title}
                   </AccordionTrigger>
@@ -65,7 +68,7 @@ function MobileNavigation({ items }: MainNavigationProps) {
               ))}
             </Accordion>
             <div className="flex flex-col space-y-3">
-              {items?.map((navItem) => (
+              {items?.map((navItem) =>
                 navItem.menu?.map((item) => (
                   <SheetClose asChild key={item.title}>
                     <Link
@@ -76,7 +79,7 @@ function MobileNavigation({ items }: MainNavigationProps) {
                     </Link>
                   </SheetClose>
                 ))
-              ))}
+              )}
             </div>
           </ScrollArea>
         </SheetContent>
