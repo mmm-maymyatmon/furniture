@@ -1,7 +1,7 @@
 import MainNavigation from '@/components/layouts/MainNavigation';
 import { siteConfig } from '@/config/site';
 import MobileNavigation from './MobileNavigation';
-import { ModeToggle } from '@/components/mode-toggle';
+import { ModeToggle } from '@/components/ModeToggle';
 
 function Header() {
   return (

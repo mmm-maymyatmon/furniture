@@ -12,7 +12,7 @@ import { Link } from 'react-router';
 function Error() {
   return (
     <div className="flex flex-col min-h-screen">
-      <Header/>
+      <Header />
       <main className="flex flex-1 mx-auto items-center">
         <Card className="w-[350px]">
           <CardHeader>
