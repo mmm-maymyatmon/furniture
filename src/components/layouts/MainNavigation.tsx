@@ -11,7 +11,7 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import type { MainNavItem } from '@/types';
-import { Icons } from '@/components/Icons'
+import { Icons } from '@/components/Icons';
 
 import { siteConfig } from '@/config/site';
 

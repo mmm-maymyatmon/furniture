@@ -38,7 +38,9 @@ function Footer() {
           </section>
 
           <section className="w-full lg:max-w-sm">
-            <h4 className="font-medium text-lg mb-2">Subscribe to our newsletter</h4>
+            <h4 className="font-medium text-lg mb-2">
+              Subscribe to our newsletter
+            </h4>
             <NewsLetterForm />
           </section>
         </section>
