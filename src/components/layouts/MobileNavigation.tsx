@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import type { MainNavItem } from '@/types';
-import { Icons } from '@/components/Icons'
+import { Icons } from '@/components/Icons';
 import { siteConfig } from '@/config/site';
 import { Button } from '@/components/ui/button';
 import {
@@ -24,20 +24,19 @@ interface MainNavigationProps {
 
 function MobileNavigation({ items }: MainNavigationProps) {
   const [isDesktop, setIsDesktop] = useState(false);
-  const query = "(min-width: 1024px)";
+  const query = '(min-width: 1024px)';
 
-
-  useEffect(()=> {
+  useEffect(() => {
     function onChange(event: MediaQueryListEvent) {
-      setIsDesktop(event.matches)
+      setIsDesktop(event.matches);
     }
     const result = matchMedia(query);
-    result.addEventListener('change', onChange );
+    result.addEventListener('change', onChange);
     // setIsDesktop(result.matches);
-    return () => result.removeEventListener("change", onChange); 
-  },[query])
+    return () => result.removeEventListener('change', onChange);
+  }, [query]);
 
-  if(isDesktop) {
+  if (isDesktop) {
     return null;
   }
   return (
