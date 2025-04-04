@@ -1,11 +1,11 @@
-import { createBrowserRouter } from 'react-router';
+import { createBrowserRouter } from 'react-router-dom';
 import RootLayout from '@/pages/RootLayout';
 import Home from '@/pages/Home';
 import Error from '@/pages/Error';
 import About from '@/pages/About';
 import Blog from '@/pages/blogs/Blog';
-import BlogDetails from './pages/blogs/BlogDetails';
-import BlogRootLayout from './pages/blogs/BlogRootLayout';
+import BlogDetails from '@/pages/blogs/BlogDetails';
+import BlogRootLayout from '@/pages/blogs/BlogRootLayout';
 
 export const router = createBrowserRouter([
   {

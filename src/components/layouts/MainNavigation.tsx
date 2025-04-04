@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';  // Updated to 'react-router-dom'
+import { Link } from 'react-router'; // Updated to 'react-router-dom'
 import { cn } from '@/lib/utils';
 import {
   NavigationMenu,
@@ -69,7 +69,10 @@ export default function MainNavigation({ items }: MainNavigationProps) {
             items[0].menu.map((item) => (
               <NavigationMenuItem key={item.title}>
                 <NavigationMenuLink asChild>
-                  <Link to={String(item.href)} className={navigationMenuTriggerStyle()}>
+                  <Link
+                    to={String(item.href)}
+                    className={navigationMenuTriggerStyle()}
+                  >
                     {item.title}
                   </Link>
                 </NavigationMenuLink>
@@ -81,26 +84,27 @@ export default function MainNavigation({ items }: MainNavigationProps) {
   );
 }
 
-const ListItem = React.forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
-  ({ className, title, children, href, ...props }, ref) => {
-    return (
-      <li>
-        <Link
-          ref={ref}
-          to={String(href)}
-          className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </Link>
-      </li>
-    );
-  }
-);
+const ListItem = React.forwardRef<
+  React.ElementRef<'a'>,
+  React.ComponentPropsWithoutRef<'a'>
+>(({ className, title, children, href, ...props }, ref) => {
+  return (
+    <li>
+      <Link
+        ref={ref}
+        to={String(href)}
+        className={cn(
+          'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+          className
+        )}
+        {...props}
+      >
+        <div className="text-sm font-medium leading-none">{title}</div>
+        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          {children}
+        </p>
+      </Link>
+    </li>
+  );
+});
 ListItem.displayName = 'ListItem';
