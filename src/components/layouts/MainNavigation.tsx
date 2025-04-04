@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router';  // Updated to 'react-router-dom'
 import { cn } from '@/lib/utils';
 import {
   NavigationMenu,
@@ -18,6 +18,7 @@ import { siteConfig } from '@/config/site';
 interface MainNavigationProps {
   items?: MainNavItem[];
 }
+
 export default function MainNavigation({ items }: MainNavigationProps) {
   return (
     <div className="hidden lg:flex gap-6">
@@ -30,15 +31,15 @@ export default function MainNavigation({ items }: MainNavigationProps) {
       <NavigationMenu>
         <NavigationMenuList>
           {items?.[0]?.card && (
-            <NavigationMenuItem>
+            <NavigationMenuItem key={items[0].title}>
               <NavigationMenuTrigger>{items[0].title}</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
                     <NavigationMenuLink asChild>
                       <Link
-                        className="flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                         to="/"
+                        className="flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                       >
                         <Icons.logo className="size-6" aria-hidden="true" />
                         <div className="mb-2 mt-4 text-lg font-medium">
@@ -67,11 +68,11 @@ export default function MainNavigation({ items }: MainNavigationProps) {
           {items?.[0]?.menu &&
             items[0].menu.map((item) => (
               <NavigationMenuItem key={item.title}>
-                <Link to={String(item.href)}>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink asChild>
+                  <Link to={String(item.href)} className={navigationMenuTriggerStyle()}>
                     {item.title}
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
         </NavigationMenuList>
@@ -80,13 +81,10 @@ export default function MainNavigation({ items }: MainNavigationProps) {
   );
 }
 
-const ListItem = React.forwardRef<
-  React.ElementRef<'a'>,
-  React.ComponentPropsWithoutRef<'a'>
->(({ className, title, children, href, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
+const ListItem = React.forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(
+  ({ className, title, children, href, ...props }, ref) => {
+    return (
+      <li>
         <Link
           ref={ref}
           to={String(href)}
@@ -101,8 +99,8 @@ const ListItem = React.forwardRef<
             {children}
           </p>
         </Link>
-      </NavigationMenuLink>
-    </li>
-  );
-});
+      </li>
+    );
+  }
+);
 ListItem.displayName = 'ListItem';

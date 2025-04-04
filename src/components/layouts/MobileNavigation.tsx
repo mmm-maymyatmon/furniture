@@ -32,7 +32,7 @@ function MobileNavigation({ items }: MainNavigationProps) {
     }
     const result = matchMedia(query);
     result.addEventListener('change', onChange);
-    // setIsDesktop(result.matches);
+    setIsDesktop(result.matches);
     return () => result.removeEventListener('change', onChange);
   }, [query]);
 

@@ -2,8 +2,20 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router';
 import mainImg from '@/data/images/couch.png';
 import { CarouselCard } from '@/components/products/CarouselCard';
+import { Posts } from '@/data/posts'; 
+import BlogCard from './blogs/BlogCard';
 
+const samplePosts = Posts.slice(0, 3)
 function Home() {
+  const Title = ({ title, href, sideText} : { title: string, href: string, sideText: string}) => (
+    <div>
+      <div className='container flex justify-between mt-10'>
+        <h2 className='text-2xl font-bold'>{title}</h2>
+        <Link to={href} className='underline'>{sideText}</Link>
+      </div>
+
+    </div>
+  )
   return (
     <div className="container mx-auto py-10 lg:px-0 px-4">
       <div className="flex flex-col lg:flex-row justify-between items-center">
@@ -30,6 +42,8 @@ function Home() {
         </div>
       </div>
       <CarouselCard />
+      <Title title="Recent Blog" href="/shop" sideText="View All Posts" />
+      <BlogCard posts={samplePosts} />
     </div>
   );
 }

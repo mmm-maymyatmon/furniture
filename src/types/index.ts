@@ -11,7 +11,7 @@ export interface NavItemWithChildren extends NavItem {
 
 export type MainNavItem = NavItemWithChildren;
 
-export type Products = {
+export type Product = {
   id: string;
   name: string;
   description: string;
@@ -24,7 +24,7 @@ export type Products = {
   status: string;
 };
 
-export type Posts = {
+export type Post = {
   id: string;
   title: string;
   content: string;
