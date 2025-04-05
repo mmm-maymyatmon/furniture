@@ -15,7 +15,8 @@ export const Posts = [
   {
     id: uuidv4(),
     title: 'The Art of Minimalist Interior Design',
-    content: 'Minimalist interior design is all about creating a clean and clutter-free space that emphasizes functionality.',
+    content:
+      'Minimalist interior design is all about creating a clean and clutter-free space that emphasizes functionality.',
     body: `<p>Minimalism is not just a design style; it’s a way of living.</p>
            <p>It focuses on simplicity, reducing distractions, and making spaces more open and comfortable.</p>
            <p>A minimalist interior often features neutral colors, functional furniture, and an emphasis on natural light.</p>
@@ -31,7 +32,8 @@ export const Posts = [
   {
     id: uuidv4(),
     title: 'How to Choose the Perfect Sofa for Your Living Room',
-    content: 'Choosing the right sofa can be challenging. Here are some tips to help you find the perfect one.',
+    content:
+      'Choosing the right sofa can be challenging. Here are some tips to help you find the perfect one.',
     body: `<p>A sofa is often the centerpiece of a living room.</p>
            <p>When selecting one, you should consider factors such as size, comfort, fabric type, and durability.</p>
            <p>Whether you prefer a classic leather couch or a modern sectional, this guide will help you make an informed decision.</p>`,
@@ -46,7 +48,8 @@ export const Posts = [
   {
     id: uuidv4(),
     title: 'Top 5 Wooden Furniture Trends in 2024',
-    content: "Wooden furniture remains a timeless choice. Let's explore the top five trends in 2024.",
+    content:
+      "Wooden furniture remains a timeless choice. Let's explore the top five trends in 2024.",
     body: `<p>Wooden furniture never goes out of style, but trends change.</p>
            <p>In 2024, we see a shift towards sustainable wood, reclaimed furniture, and innovative wood finishes.</p>
            <p>Whether you’re a fan of rustic oak or sleek walnut, these trends will inspire your next home upgrade.</p>`,
@@ -61,7 +64,8 @@ export const Posts = [
   {
     id: uuidv4(),
     title: 'How to Decorate Your Living Room for Fall',
-    content: 'Decorating your living room for fall is a fun and festive way to add some warmth to your space.',
+    content:
+      'Decorating your living room for fall is a fun and festive way to add some warmth to your space.',
     body: `<p>With the leaves changing colors and the weather getting colder, it's time to decorate your living room for fall.</p>
            <p>Here are some tips for creating a cozy and inviting atmosphere:</p>
            <ul>
@@ -76,12 +80,13 @@ export const Posts = [
     createdAt: '2024-09-25T14:45:00Z',
     updatedAt: '2024-09-25T14:45:00Z',
     status: 'published',
-    tags: ['Fall Decor', 'Living Room', 'Interior Design'],  
+    tags: ['Fall Decor', 'Living Room', 'Interior Design'],
   },
   {
     id: uuidv4(),
     title: 'The Benefits of Indoor Plants',
-    content: 'Indoor plants can bring a sense of tranquility and nature to your living space.', 
+    content:
+      'Indoor plants can bring a sense of tranquility and nature to your living space.',
     body: `<p>Plants provide a sense of tranquility and nature in your home.</p>
            <p>They can help reduce stress, improve air quality, and provide a sense of relaxation.</p>
            <p>Here are some benefits of indoor plants:</p>
@@ -102,7 +107,8 @@ export const Posts = [
   {
     id: uuidv4(),
     title: 'The Benefits of Indoor Plants',
-    content: 'Indoor plants can bring a sense of tranquility and nature to your living space.', 
+    content:
+      'Indoor plants can bring a sense of tranquility and nature to your living space.',
     body: `<p>Plants provide a sense of tranquility and nature in your home.</p>
            <p>They can help reduce stress, improve air quality, and provide a sense of relaxation.</p>
            <p>Here are some benefits of indoor plants:</p>
@@ -123,7 +129,8 @@ export const Posts = [
   {
     id: uuidv4(),
     title: 'The Benefits of Indoor Plants',
-    content: 'Indoor plants can bring a sense of tranquility and nature to your living space.', 
+    content:
+      'Indoor plants can bring a sense of tranquility and nature to your living space.',
     body: `<p>Plants provide a sense of tranquility and nature in your home.</p>
            <p>They can help reduce stress, improve air quality, and provide a sense of relaxation.</p>
            <p>Here are some benefits of indoor plants:</p>
@@ -144,7 +151,8 @@ export const Posts = [
   {
     id: uuidv4(),
     title: 'The Benefits of Indoor Plants',
-    content: 'Indoor plants can bring a sense of tranquility and nature to your living space.', 
+    content:
+      'Indoor plants can bring a sense of tranquility and nature to your living space.',
     body: `<p>Plants provide a sense of tranquility and nature in your home.</p>
            <p>They can help reduce stress, improve air quality, and provide a sense of relaxation.</p>
            <p>Here are some benefits of indoor plants:</p>
@@ -164,7 +172,8 @@ export const Posts = [
   {
     id: uuidv4(),
     title: 'The Benefits of Indoor Plants',
-    content: 'Indoor plants can bring a sense of tranquility and nature to your living space.', 
+    content:
+      'Indoor plants can bring a sense of tranquility and nature to your living space.',
     body: `<p>Plants provide a sense of tranquility and nature in your home.</p>
            <p>They can help reduce stress, improve air quality, and provide a sense of relaxation.</p>
            <p>Here are some benefits of indoor plants:</p>
@@ -184,7 +193,8 @@ export const Posts = [
   {
     id: uuidv4(),
     title: 'The Benefits of Indoor Plants',
-    content: 'Indoor plants can bring a sense of tranquility and nature to your living space.', 
+    content:
+      'Indoor plants can bring a sense of tranquility and nature to your living space.',
     body: `<p>Plants provide a sense of tranquility and nature in your home.</p>
            <p>They can help reduce stress, improve air quality, and provide a sense of relaxation.</p>
            <p>Here are some benefits of indoor plants:</p>
@@ -204,7 +214,8 @@ export const Posts = [
   {
     id: uuidv4(),
     title: 'The Benefits of Indoor Plants',
-    content: 'Indoor plants can bring a sense of tranquility and nature to your living space.', 
+    content:
+      'Indoor plants can bring a sense of tranquility and nature to your living space.',
     body: `<p>Plants provide a sense of tranquility and nature in your home.</p>
            <p>They can help reduce stress, improve air quality, and provide a sense of relaxation.</p>
            <p>Here are some benefits of indoor plants:</p>
@@ -220,5 +231,5 @@ export const Posts = [
     createdAt: '2024-09-24T16:20:00Z',
     updatedAt: '2024-09-24T16:20:00Z',
     status: 'published',
-  }
+  },
 ];

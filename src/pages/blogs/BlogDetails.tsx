@@ -8,7 +8,6 @@ import RichTextRenderer from '@/components/blogs/RichTextRenderer';
 function BlogDetails() {
   const { postId } = useParams();
   const post = Posts.find((post) => post.id === postId);
-  
 
   return (
     <div className="container mx-auto py-10 lg:px-0 px-4">
@@ -20,7 +19,7 @@ function BlogDetails() {
               All Posts
             </Link>
           </Button>
-          
+
           {post ? (
             <div className="space-y-6">
               <div>
@@ -48,7 +47,11 @@ function BlogDetails() {
               <div className="space-x-2">
                 {post.tags && post.tags.length > 0 ? (
                   post.tags.map((tag, index) => (
-                    <Button key={index} variant="secondary" className="py-2 px-4 text-sm rounded-full border border-gray-300">
+                    <Button
+                      key={index}
+                      variant="secondary"
+                      className="py-2 px-4 text-sm rounded-full border border-gray-300"
+                    >
                       {tag}
                     </Button>
                   ))
@@ -59,7 +62,9 @@ function BlogDetails() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <h2 className="text-2xl font-semibold text-gray-800">Post not found</h2>
+              <h2 className="text-2xl font-semibold text-gray-800">
+                Post not found
+              </h2>
             </div>
           )}
         </div>
@@ -78,10 +83,16 @@ function BlogDetails() {
                 className="flex items-center gap-4 p-4 shadow-md rounded-lg bg-card text-card-foreground"
               >
                 <div className="w-16 h-16 overflow-hidden rounded-lg">
-                  <img src={post.image} alt={post.title} className="object-cover w-full h-full" />
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="object-cover w-full h-full"
+                  />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm">{post.content.slice(0, 100)}... <i>see more</i></p>
+                  <p className="text-sm">
+                    {post.content.slice(0, 100)}... <i>see more</i>
+                  </p>
                 </div>
               </Link>
             ))}

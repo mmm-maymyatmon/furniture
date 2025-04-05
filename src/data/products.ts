@@ -1,14 +1,29 @@
-import p01 from '@/data/images/p01.jpg';
-import p02 from '@/data/images/p02.jpg';
-import p03 from '@/data/images/p03.jpg';
-import p04 from '@/data/images/p04.jpg';
-import p05 from '@/data/images/p05.jpg';
-import p06 from '@/data/images/p06.jpg';
-import p07 from '@/data/images/p07.jpg';
-import p08 from '@/data/images/p08.jpg';
-import p09 from '@/data/images/p09.jpg';
-import p10 from '@/data/images/p10.jpg';
-import p11 from '@/data/images/p11.jpg';
+import p01 from '@/data/images/products/product01.jpg';
+import p02 from '@/data/images/products/product02.jpg';
+import p03 from '@/data/images/products/product03.jpg';
+import p04 from '@/data/images/products/product04.jpg';
+import p05 from '@/data/images/products/product05.jpg';
+import p06 from '@/data/images/products/product06.jpg';
+import p07 from '@/data/images/products/product07.jpg';
+import p08 from '@/data/images/products/product08.jpg';
+import p09 from '@/data/images/products/product09.jpg';
+import p10 from '@/data/images/products/product10.jpg';
+import p11 from '@/data/images/products/product11.jpg';
+
+export const filterList = {
+  types: [
+    {id: 1, label: 'seating'},
+    {id: 2, label: 'lying'},
+    {id: 3, label: 'entertainment'},
+    {id: 4, label: 'tables'},
+    {id: 5, label: 'storage'}
+  ],
+  categories: [
+    {id: 1, label: 'Wooden'},
+    {id: 2, label: 'Bamboo'},
+    {id: 3, label: 'Metal'}
+  ]
+}
 
 export const products = [
   {
@@ -45,7 +60,7 @@ export const products = [
     discount: 5,
     rating: 4.3,
     inventory: 30,
-    status: 'available',
+    status: 'sold',
   },
   {
     id: 4,
@@ -69,7 +84,7 @@ export const products = [
     discount: 10,
     rating: 4.4,
     inventory: 25,
-    status: 'available',
+    status: 'sold',
   },
   {
     id: 6,

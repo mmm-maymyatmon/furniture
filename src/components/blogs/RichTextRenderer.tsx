@@ -1,13 +1,16 @@
-import Dompurify from 'dompurify'
+import Dompurify from 'dompurify';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-    content: string;
+  content: string;
 }
-function RichTextRenderer({content, className} : Props) {
-    const sanitizedContent = Dompurify.sanitize(content)
+function RichTextRenderer({ content, className }: Props) {
+  const sanitizedContent = Dompurify.sanitize(content);
   return (
-    <div dangerouslySetInnerHTML={{ __html: sanitizedContent }} className={className} />
-  )
+    <div
+      dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+      className={className}
+    />
+  );
 }
 
-export default RichTextRenderer
+export default RichTextRenderer;
