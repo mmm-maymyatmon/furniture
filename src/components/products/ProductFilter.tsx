@@ -1,9 +1,9 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Form,
   FormControl,
@@ -11,22 +11,24 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
+} from '@/components/ui/form';
 // import { toast } from "@/components/hooks/use-toast"
-import type { Category } from "@/types"
+import type { Category } from '@/types';
 
 interface FilterProps {
-  filterList: { categories: Category[]; types: Category[] }
+  filterList: { categories: Category[]; types: Category[] };
 }
 
 const FormSchema = z.object({
-  categories: z.array(z.string()).refine((value) => value.some((item) => item), {
-    message: "You have to select at least one categories.",
-  }),
+  categories: z
+    .array(z.string())
+    .refine((value) => value.some((item) => item), {
+      message: 'You have to select at least one categories.',
+    }),
   types: z.array(z.string()).refine((value) => value.some((item) => item), {
-    message: "You have to select at least one types.",
+    message: 'You have to select at least one types.',
   }),
-})
+});
 
 function ProductFilter({ filterList }: FilterProps) {
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -35,7 +37,7 @@ function ProductFilter({ filterList }: FilterProps) {
       categories: [],
       types: [],
     },
-  })
+  });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     // Uncomment this if you want toast notification
@@ -47,13 +49,12 @@ function ProductFilter({ filterList }: FilterProps) {
     //     </pre>
     //   ),
     // })
-    console.log("Submitted Data:", data)
+    console.log('Submitted Data:', data);
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
- 
         <FormField
           control={form.control}
           name="categories"
@@ -72,14 +73,18 @@ function ProductFilter({ filterList }: FilterProps) {
                           <Checkbox
                             checked={field.value.includes(item.id.toString())}
                             onCheckedChange={(checked) => {
-                              const id = item.id.toString()
+                              const id = item.id.toString();
                               return checked
                                 ? field.onChange([...field.value, id])
-                                : field.onChange(field.value.filter((value) => value !== id))
+                                : field.onChange(
+                                    field.value.filter((value) => value !== id)
+                                  );
                             }}
                           />
                         </FormControl>
-                        <FormLabel className="text-sm font-normal">{item.label}</FormLabel>
+                        <FormLabel className="text-sm font-normal">
+                          {item.label}
+                        </FormLabel>
                       </FormItem>
                     )}
                   />
@@ -90,7 +95,6 @@ function ProductFilter({ filterList }: FilterProps) {
           )}
         />
 
-   
         <FormField
           control={form.control}
           name="types"
@@ -109,14 +113,18 @@ function ProductFilter({ filterList }: FilterProps) {
                           <Checkbox
                             checked={field.value.includes(item.id.toString())}
                             onCheckedChange={(checked) => {
-                              const id = item.id.toString()
+                              const id = item.id.toString();
                               return checked
                                 ? field.onChange([...field.value, id])
-                                : field.onChange(field.value.filter((value) => value !== id))
+                                : field.onChange(
+                                    field.value.filter((value) => value !== id)
+                                  );
                             }}
                           />
                         </FormControl>
-                        <FormLabel className="text-sm font-normal">{item.label}</FormLabel>
+                        <FormLabel className="text-sm font-normal">
+                          {item.label}
+                        </FormLabel>
                       </FormItem>
                     )}
                   />
@@ -132,7 +140,7 @@ function ProductFilter({ filterList }: FilterProps) {
         </Button>
       </form>
     </Form>
-  )
+  );
 }
 
-export default ProductFilter
+export default ProductFilter;

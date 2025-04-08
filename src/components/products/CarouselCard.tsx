@@ -29,7 +29,7 @@ export function CarouselCard() {
                   <div className="w-30 h-30 bg-gray-200">
                     <img
                       className="w-full h-full object-cover"
-                      src={product.image}
+                      src={product.images[0]}
                       alt={product.name}
                     />
                   </div>

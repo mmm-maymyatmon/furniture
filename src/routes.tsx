@@ -1,14 +1,21 @@
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter } from 'react-router';
 import RootLayout from '@/pages/RootLayout';
 import Home from '@/pages/Home';
 import Error from '@/pages/Error';
 import About from '@/pages/About';
-import Blog from '@/pages/blogs/Blog';
-import BlogDetails from '@/pages/blogs/BlogDetails';
-import BlogRootLayout from '@/pages/blogs/BlogRootLayout';
-import ProductRootLayout from './pages/products/ProductRootLayout';
-import Product from './pages/products/Product';
-import ProductDetails from './pages/products/ProductDetails';
+
+const Blog = lazy(() => import('@/pages/blogs/Blog'));
+const BlogDetails = lazy(() => import('@/pages/blogs/BlogDetails'));
+const BlogRootLayout = lazy(() => import('@/pages/blogs/BlogRootLayout'));
+
+const ProductRootLayout = lazy(
+  () => import('@/pages/products/ProductRootLayout')
+);
+const Product = lazy(() => import('@/pages/products/Product'));
+const ProductDetails = lazy(() => import('@/pages/products/ProductDetails'));
+
+const SuspenseFallback = () => <div className="text-center">Loading...</div>;
 
 export const router = createBrowserRouter([
   {
@@ -26,15 +33,27 @@ export const router = createBrowserRouter([
       },
       {
         path: 'blogs',
-        element: <BlogRootLayout />,
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <BlogRootLayout />
+          </Suspense>
+        ),
         children: [
           {
             index: true,
-            element: <Blog />,
+            element: (
+              <Suspense fallback={<SuspenseFallback />}>
+                <Blog />
+              </Suspense>
+            ),
           },
           {
             path: ':postId',
-            element: <BlogDetails />,
+            element: (
+              <Suspense fallback={<SuspenseFallback />}>
+                <BlogDetails />
+              </Suspense>
+            ),
           },
         ],
       },
@@ -44,11 +63,19 @@ export const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Product />,
+            element: (
+              <Suspense fallback={<SuspenseFallback />}>
+                <Product />
+              </Suspense>
+            ),
           },
           {
             path: ':productId',
-            element: <ProductDetails />,
+            element: (
+              <Suspense fallback={<SuspenseFallback />}>
+                <ProductDetails />
+              </Suspense>
+            ),
           },
         ],
       },
