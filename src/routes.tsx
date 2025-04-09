@@ -4,6 +4,8 @@ import RootLayout from '@/pages/RootLayout';
 import Home from '@/pages/Home';
 import Error from '@/pages/Error';
 import About from '@/pages/About';
+import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
 
 const Blog = lazy(() => import('@/pages/blogs/Blog'));
 const BlogDetails = lazy(() => import('@/pages/blogs/BlogDetails'));
@@ -79,6 +81,15 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      
     ],
   },
+  {
+    path: '/login',
+    element: <Login/>
+  },
+  {
+    path: '/register',
+    element: <Register/>
+  }
 ]);

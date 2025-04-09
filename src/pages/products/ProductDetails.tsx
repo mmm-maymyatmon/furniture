@@ -88,12 +88,11 @@ function ProductDetails() {
           <AddToCartForm canBuy={product?.status === 'active'} />
           <Separator className="my-1.5" />
           <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1" className='border-none'>
+            <AccordionItem value="item-1" className="border-none">
               <AccordionTrigger>Description</AccordionTrigger>
               <AccordionContent>
-                {
-                  product?.description ?? "No description is available for this product."
-                }
+                {product?.description ??
+                  'No description is available for this product.'}
               </AccordionContent>
             </AccordionItem>
           </Accordion>

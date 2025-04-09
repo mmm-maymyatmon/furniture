@@ -19,7 +19,7 @@ export function CarouselCard() {
   );
 
   return (
-    <Carousel plugins={[plugin.current]} className="w-full mt-10">
+    <Carousel plugins={[plugin.current]} className="w-full container mt-10">
       <CarouselContent className="-ml-1">
         {products.map((product) => (
           <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3">

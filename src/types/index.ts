@@ -43,3 +43,12 @@ export type Category = {
   id: number;
   label: string;
 };
+
+export type User = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  email: string;
+  imageUrl: string;
+};
