@@ -7,6 +7,7 @@ import About from '@/pages/About';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import { homeLoader } from '@/router/loader';
+import { loginAction } from './router/action';
 
 const Blog = lazy(() => import('@/pages/blogs/Blog'));
 const BlogDetails = lazy(() => import('@/pages/blogs/BlogDetails'));
@@ -88,7 +89,8 @@ export const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <Login/>
+    element: <Login />,
+    action: loginAction,
   },
   {
     path: '/register',
