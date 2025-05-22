@@ -42,7 +42,7 @@ export default function LoginForm() {
   const actionData = useActionData() as {
     error?: string;
     message?: string;
-  };
+  }
 
   const isSubmitting = navigation.state === 'submitting';
 
@@ -117,9 +117,9 @@ export default function LoginForm() {
                 </FormItem>
               )}
             />
-            {actionData && (
-              <p className="text-xs text-red-400">{actionData?.message}</p>
-            )}
+            {
+              actionData && <p className='text-xs text-red-400'>{ actionData.message }</p>
+            }
             <div className="grid gap-4">
               <Button type="submit" className="mt-2 w-full">
                 {isSubmitting ? (
