@@ -1,17 +1,17 @@
-import { Link, useSubmit, useNavigation, useActionData } from "react-router";
+import { Link, useSubmit, useNavigation, useActionData } from 'react-router';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 import {
   Form,
   FormControl,
@@ -20,20 +20,20 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import PasswordInput from "./PasswordInput";
+} from '@/components/ui/form';
+import PasswordInput from './PasswordInput';
 
 const FormSchema = z.object({
   phone: z
     .string()
-    .min(7, "Phone number is too short")
-    .max(12, "Phone number is too long")
-    .regex(/^\d+$/, "Phone number must be numbers"),
+    .min(7, 'Phone number is too short')
+    .max(12, 'Phone number is too long')
+    .regex(/^\d+$/, 'Phone number must be numbers'),
   password: z
     .string()
-    .min(8, "Password must be 8 digits.")
-    .max(8, "Password must be 8 digits.")
-    .regex(/^\d+$/, "Password must be numbers"),
+    .min(8, 'Password must be 8 digits.')
+    .max(8, 'Password must be 8 digits.')
+    .regex(/^\d+$/, 'Password must be numbers'),
 });
 
 export default function LoginForm() {
@@ -44,19 +44,19 @@ export default function LoginForm() {
     message?: string;
   };
 
-  const isSubmitting = navigation.state === "submitting";
+  const isSubmitting = navigation.state === 'submitting';
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      phone: "",
-      password: "",
+      phone: '',
+      password: '',
     },
   });
 
   function onSubmit(values: z.infer<typeof FormSchema>) {
     // console.log(values);
-    submit(values, { method: "post", action: "/login" });
+    submit(values, { method: 'post', action: '/login' });
   }
 
   return (
@@ -111,11 +111,7 @@ export default function LoginForm() {
                   </div>
 
                   <FormControl>
-                  <PasswordInput
-                      required
-                      inputMode="numeric"
-                      {...field}
-                    />
+                    <PasswordInput required inputMode="numeric" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -126,8 +122,35 @@ export default function LoginForm() {
             )}
             <div className="grid gap-4">
               <Button type="submit" className="mt-2 w-full">
-                {isSubmitting ? "Submitting..." : "Sign In"}
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center">
+                    <svg
+                      className="animate-spin h-5 w-5 mr-3 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                      ></path>
+                    </svg>
+                    Submitting...
+                  </div>
+                ) : (
+                  'Sign In'
+                )}
               </Button>
+
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                 <span className="relative z-10 bg-background px-2 text-muted-foreground">
                   Or continue with
@@ -140,7 +163,7 @@ export default function LoginForm() {
           </form>
         </Form>
         <div className="mt-4 text-center text-sm">
-          Don&apos;t have an account?{" "}
+          Don&apos;t have an account?{' '}
           <Link to="/register" className="underline">
             Sign Up
           </Link>
