@@ -5,9 +5,12 @@ import Home from '@/pages/Home';
 import Error from '@/pages/Error';
 import About from '@/pages/About';
 import Login from './pages/auth/Login';
-import Register from './pages/auth/Register';
 import { homeLoader, loginLoader } from '@/router/loader';
 import { loginAction, logoutAction } from './router/action';
+import AuthRootLayout from './pages/auth/AuthRootLayout';
+import OtpPage from './pages/auth/Otp';
+import SignUpPage from './pages/auth/SignUp';
+import ConfirmPasswordPage from './pages/auth/ConfirmPassword';
 
 const Blog = lazy(() => import('@/pages/blogs/Blog'));
 const BlogDetails = lazy(() => import('@/pages/blogs/BlogDetails'));
@@ -95,7 +98,12 @@ export const router = createBrowserRouter([
   },
   {
     path: '/register',
-    element: <Register/>
+    element: <AuthRootLayout />,
+    children: [
+      { index: true, element: <SignUpPage /> },
+      { path: "otp", element: <OtpPage /> },
+      { path: "confirm-password", element: <ConfirmPasswordPage /> },
+    ]
   },
   {
     path: '/logout',
