@@ -1,12 +1,12 @@
 import { lazy, Suspense } from 'react';
-import { createBrowserRouter } from 'react-router';
+import { createBrowserRouter, redirect } from 'react-router';
 import RootLayout from '@/pages/RootLayout';
 import Home from '@/pages/Home';
 import Error from '@/pages/Error';
 import About from '@/pages/About';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
-import { homeLoader } from '@/router/loader';
+import { homeLoader, loginLoader } from '@/router/loader';
 import { loginAction, logoutAction } from './router/action';
 
 const Blog = lazy(() => import('@/pages/blogs/Blog'));
@@ -90,6 +90,7 @@ export const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+    loader: loginLoader,
     action: loginAction,
   },
   {
@@ -99,5 +100,6 @@ export const router = createBrowserRouter([
   {
     path: '/logout',
     action: logoutAction,
+    loader: ()=> redirect("/")
   }
 ]);
