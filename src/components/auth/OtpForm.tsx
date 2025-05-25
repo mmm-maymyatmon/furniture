@@ -63,7 +63,7 @@ export function InputOTPForm({
             </div>
             <span className="sr-only">OTP verify form</span>
           </Link>
-          <h1 className="text-xl font-bold">We've sent OTP to your phone.</h1>
+          <h1 className="text-xl font-bold mb-3">We've sent OTP to your phone.</h1>
 
           <Form {...form}>
             <form
