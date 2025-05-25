@@ -5,12 +5,13 @@ import Home from '@/pages/Home';
 import Error from '@/pages/Error';
 import About from '@/pages/About';
 import Login from './pages/auth/Login';
-import { homeLoader, loginLoader } from '@/router/loader';
-import { loginAction, logoutAction } from './router/action';
+import { homeLoader, loginLoader, otpLoader } from '@/router/loader';
+import { loginAction, logoutAction, otpAction, registerAction } from './router/action';
 import AuthRootLayout from './pages/auth/AuthRootLayout';
 import OtpPage from './pages/auth/Otp';
 import SignUpPage from './pages/auth/SignUp';
 import ConfirmPasswordPage from './pages/auth/ConfirmPassword';
+import { o } from 'node_modules/react-router/dist/development/fog-of-war-BQyvjjKg.d.mts';
 
 const Blog = lazy(() => import('@/pages/blogs/Blog'));
 const BlogDetails = lazy(() => import('@/pages/blogs/BlogDetails'));
@@ -100,8 +101,8 @@ export const router = createBrowserRouter([
     path: '/register',
     element: <AuthRootLayout />,
     children: [
-      { index: true, element: <SignUpPage /> },
-      { path: "otp", element: <OtpPage /> },
+      { index: true, element: <SignUpPage />, loader: loginLoader, action: registerAction },
+      { path: "otp", element: <OtpPage />, loader: otpLoader, action: otpAction },
       { path: "confirm-password", element: <ConfirmPasswordPage /> },
     ]
   },

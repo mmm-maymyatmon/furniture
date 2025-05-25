@@ -66,9 +66,9 @@ export function SignUpForm({
               <div className="flex h-8 w-8 items-center justify-center rounded-md">
                 <Icons.logo className="w-6 h-6 mr-2" aria-hidden="true" />
               </div>
-              <span className="sr-only">Furniture Shop</span>
+              <span className="sr-only"></span>
             </Link>
-            <h1 className="text-xl font-bold">Welcome to Furniture Shop</h1>
+            <h1 className="text-xl font-bold">Welcome to </h1>
             <div className="text-center text-sm">
               Already have an account?
               <a href="/login" className="underline underline-offset-4">
