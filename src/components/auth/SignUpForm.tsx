@@ -60,15 +60,14 @@ export function SignUpForm({
       <form>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col items-center gap-2">
-            <a
-              href="#"
+            <Link to="/"
               className="flex flex-col items-center gap-2 font-medium"
             >
               <div className="flex h-8 w-8 items-center justify-center rounded-md">
                 <Icons.logo className="w-6 h-6 mr-2" aria-hidden="true" />
               </div>
               <span className="sr-only">Furniture Shop</span>
-            </a>
+            </Link>
             <h1 className="text-xl font-bold">Welcome to Furniture Shop</h1>
             <div className="text-center text-sm">
               Already have an account?
