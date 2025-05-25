@@ -101,7 +101,7 @@ function ProductDetails() {
 
       <section className="mt-10">
         <h2 className="text-xl font-semibold mb-4">
-          More Products from Artisan Haven
+          More Products from Furniture Shop
         </h2>
         <ScrollArea className="whitespace-nowrap">
           <div className="w-full flex space-x-4 p-0">

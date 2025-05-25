@@ -6,8 +6,8 @@ const links = {
 };
 
 export const siteConfig = {
-  name: 'Artisan Haven',
-  description: 'Artisan Haven built with React Router.',
+  name: 'Furniture Shop',
+  description: 'Furniture Shop built with React Router.',
   links,
   mainNav: [
     {
@@ -57,7 +57,7 @@ export const siteConfig = {
   ],
   footerNav: [
     {
-      title: 'Artisan Haven',
+      title: 'Furniture Shop',
       items: [
         { title: 'Seating', href: '/types/seating', external: true },
         { title: 'Lying', href: '/types/lying', external: true },

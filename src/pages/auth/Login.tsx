@@ -11,7 +11,7 @@ function Login() {
         className="fixed top-6 left-6 z-50 flex items-center text-xl font-semibold text-primary hover:opacity-90 transition-all"
       >
         <Icons.logo className="w-6 h-6 mr-2" aria-hidden="true" />
-        <span>Artisan Haven</span>
+        <span>Furniture Shop</span>
       </Link>
 
       <main className="grid min-h-screen grid-cols-1 lg:grid-cols-2">
@@ -24,7 +24,7 @@ function Login() {
         <div className="hidden lg:block relative">
           <img
             src={Banner}
-            alt="Artisan Haven"
+            alt="Furniture Shop"
             className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-black/30" />
