@@ -16,6 +16,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { useState } from 'react';
 
 const FormSchema = z.object({
   password: z
@@ -41,6 +42,8 @@ export function ConfirmPasswordForm({
     message?: string;
   };
 
+  const [clientError, setClientError] = useState<string | null>(null);
+
   const isSubmitting = navigation.state === 'submitting';
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -52,12 +55,16 @@ export function ConfirmPasswordForm({
   });
 
   function onSubmit(values: z.infer<typeof FormSchema>) {
+    if (values.password !== values.confirmPassword) { 
+      setClientError('Passwords do not match.');
+      return;
+    }
+    setClientError(null);
     // console.log(values);
     submit(values, { method: 'post', action: '/register/confirm-password' });
   }
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
-      <form>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col items-center gap-2">
             <Link
@@ -122,7 +129,14 @@ export function ConfirmPasswordForm({
                     )}
                   />
                   {actionData && (
-                    <p className="text-xs text-red-400">{actionData.message}</p>
+                    <div className='flex gap-2'>
+                      <p className="text-xs text-red-400">{actionData.message}</p>
+                    <Link
+                      to="/register" className='text-xs underline underline-offset-4' >Go back to register</Link>
+                    </div>
+                  )}
+                  {clientError && (
+                    <p className="text-xs text-red-400">{clientError}</p>
                   )}
                   <div className="grid gap-4">
                     <Button type="submit" className="mt-2 w-full">
@@ -160,7 +174,6 @@ export function ConfirmPasswordForm({
             </div>
           </div>
         </div>
-      </form>
     </div>
   );
 }

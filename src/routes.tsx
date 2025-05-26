@@ -5,8 +5,8 @@ import Home from '@/pages/Home';
 import Error from '@/pages/Error';
 import About from '@/pages/About';
 import Login from './pages/auth/Login';
-import { homeLoader, loginLoader, otpLoader } from '@/router/loader';
-import { loginAction, logoutAction, otpAction, registerAction } from './router/action';
+import { confirmLoader, homeLoader, loginLoader, otpLoader } from '@/router/loader';
+import { confirmAction, loginAction, logoutAction, otpAction, registerAction } from './router/action';
 import AuthRootLayout from './pages/auth/AuthRootLayout';
 import OtpPage from './pages/auth/Otp';
 import SignUpPage from './pages/auth/SignUp';
@@ -103,7 +103,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <SignUpPage />, loader: loginLoader, action: registerAction },
       { path: "otp", element: <OtpPage />, loader: otpLoader, action: otpAction },
-      { path: "confirm-password", element: <ConfirmPasswordPage /> },
+      { path: "confirm-password", element: <ConfirmPasswordPage />, loader: confirmLoader, action: confirmAction },
     ]
   },
   {

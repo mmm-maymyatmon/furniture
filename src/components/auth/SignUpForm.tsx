@@ -24,11 +24,6 @@ const FormSchema = z.object({
     .min(7, 'Phone number is too short')
     .max(12, 'Phone number is too long')
     .regex(/^\d+$/, 'Phone number must be numbers'),
-  password: z
-    .string()
-    .min(8, 'Password must be 8 digits.')
-    .max(8, 'Password must be 8 digits.')
-    .regex(/^\d+$/, 'Password must be numbers'),
 });
 
 export function SignUpForm({
@@ -57,7 +52,6 @@ export function SignUpForm({
   }
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
-      <form>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col items-center gap-2">
             <Link to="/"
@@ -169,7 +163,6 @@ export function SignUpForm({
             </Button>
           </div>
         </div>
-      </form>
       <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary  ">
         By clicking continue, you agree to our{' '}
         <Link to="#">Terms of Service</Link>
