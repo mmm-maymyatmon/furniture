@@ -5,16 +5,18 @@ import moment from 'moment';
 interface PostProps {
   posts: Post[];
 }
-
+const imageUrl = import.meta.env.VITE_IMG_URL;
 function BlogCard({ posts }: PostProps) {
   return (
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 my-8">
-      {posts.map((post) => (
+      {posts?.map((post) => (
         <Link to={`/blogs/${post.id}`} key={post.id} className="group">
           <div className="w-full h-70 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group-hover:bg-opacity-70 group-hover:bg-black">
             <img
-              src={post.image}
+              src={imageUrl + post.image}
               alt={post.title}
+              loading="lazy"
+                      decoding='async'
               className="w-full h-full object-cover transition-transform duration-300 transform group-hover:scale-105 group-hover:brightness-90 rounded-xl"
             />
           </div>
@@ -22,7 +24,7 @@ function BlogCard({ posts }: PostProps) {
             {post.title}
           </h2>
           <span className="text-sm text-gray-500">
-            by <span className="font-bold">{post.author}</span> on{' '}
+            by <span className="font-bold">{post.author.fullname }</span> on{' '}
             <span className="font-bold">
               {moment(post.updatedAt).format('MMM DD, YYYY')}
             </span>

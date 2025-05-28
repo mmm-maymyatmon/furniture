@@ -15,7 +15,7 @@ function Login() {
       </Link>
 
       <main className="grid min-h-screen grid-cols-1 lg:grid-cols-2">
-        <div className="flex items-center justify-center px-4 sm:px-12 py-12 bg-white shadow-md">
+        <div className="flex items-center justify-center px-4 sm:px-12 py-12 shadow-md">
           <div className="w-full max-w-md space-y-6">
             <LoginForm />
           </div>

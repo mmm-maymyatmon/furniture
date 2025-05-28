@@ -11,7 +11,6 @@ import AuthRootLayout from './pages/auth/AuthRootLayout';
 import OtpPage from './pages/auth/Otp';
 import SignUpPage from './pages/auth/SignUp';
 import ConfirmPasswordPage from './pages/auth/ConfirmPassword';
-import { o } from 'node_modules/react-router/dist/development/fog-of-war-BQyvjjKg.d.mts';
 
 const Blog = lazy(() => import('@/pages/blogs/Blog'));
 const BlogDetails = lazy(() => import('@/pages/blogs/BlogDetails'));
@@ -30,11 +29,12 @@ export const router = createBrowserRouter([
     path: '/',
     element: <RootLayout />,
     errorElement: <Error />,
-    loader: homeLoader,
+    
     children: [
       {
         index: true,
         element: <Home />,
+        loader: homeLoader,
       },
       {
         path: 'about',

@@ -47,9 +47,9 @@ export const Posts = [
   },
   {
     id: uuidv4(),
-    title: 'Top 5 Wooden Furniture Trends in 2024',
+    title: 'Top 5 Wooden Furniture Trends in 2025',
     content:
-      "Wooden furniture remains a timeless choice. Let's explore the top five trends in 2024.",
+      "Wooden furniture remains a timeless choice. Let's explore the top five trends in 2025.",
     body: `<p>Wooden furniture never goes out of style, but trends change.</p>
            <p>In 2024, we see a shift towards sustainable wood, reclaimed furniture, and innovative wood finishes.</p>
            <p>Whether you’re a fan of rustic oak or sleek walnut, these trends will inspire your next home upgrade.</p>`,

@@ -1,8 +1,6 @@
 import * as React from 'react';
 import Autoplay from 'embla-carousel-autoplay';
 
-import { products } from '@/data/products';
-
 import { Card, CardContent } from '@/components/ui/card';
 import {
   Carousel,
@@ -12,8 +10,15 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Link } from 'react-router';
+import { Product } from '@/types';
 
-export function CarouselCard() {
+interface ProductProps {
+  products: Product[];
+}
+
+const imageUrl = import.meta.env.VITE_IMG_URL;
+
+export default function CarouselCard({products}: ProductProps) {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
@@ -29,8 +34,11 @@ export function CarouselCard() {
                   <div className="w-30 h-30 bg-gray-200">
                     <img
                       className="w-full h-full object-cover"
-                      src={product.images[0]}
+                      src={imageUrl + product.images[0].path}
+
                       alt={product.name}
+                      loading="lazy"
+                      decoding='async'
                     />
                   </div>
                   <div>
