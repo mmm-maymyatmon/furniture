@@ -12,9 +12,9 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Icons } from '@/components/Icons';
 import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
+import { Icons } from './icons';
 
 const emailSchema = z.object({
   email: z.string().email({
@@ -46,24 +46,24 @@ export default function NewsLetterForm() {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="relative space-y-">
+            <FormItem className="relative space-y-0">
               <FormLabel className="sr-only">Email</FormLabel>
               <FormControl>
                 <Input
                   placeholder="furniture@gmail.com"
                   {...field}
-                  className=""
+                  className="bg-[#2a5452] p-6 rounded-3xl"
                 />
               </FormControl>
               <FormMessage />
               <Button
                 size="icon"
-                className="absolute top-[4px] right-[3.5px] size-7 z-20"
+                className="absolute top-[10px] right-[15px] size-7 z-20 bg-white hover:bg-orange-300"
               >
                 {loading ? (
-                  <Loader2 className="animate-spin" />
+                  <Loader2 className="animate-spin text-[#2a5452]" />
                 ) : (
-                  <Icons.paperPlane className="size-3" aria-hidden="true" />
+                  <Icons.paperPlane className="size-3 text-[#2a5452]" aria-hidden="true" />
                 )}
                 <span className="sr-only">Join newsletter</span>
               </Button>

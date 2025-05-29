@@ -1,7 +1,7 @@
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { Button } from '@/components/ui/button';
-import { Link, useLoaderData } from 'react-router';
+import { Link } from 'react-router';
 import mainImg from '@/data/images/couch.png';
 import CarouselCard from '@/components/products/CarouselCard';
 import ProductCard from '@/components/products/ProductCard';

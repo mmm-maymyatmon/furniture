@@ -1,6 +1,5 @@
 import { Link } from 'react-router';
 import type { MainNavItem } from '@/types';
-import { Icons } from '@/components/Icons';
 import { siteConfig } from '@/config/site';
 import { Button } from '@/components/ui/button';
 import {
@@ -17,6 +16,7 @@ import {
 } from '@/components/ui/accordion';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useEffect, useState } from 'react';
+import { Icons } from '../icons';
 
 interface MainNavigationProps {
   items?: MainNavItem[];
@@ -51,12 +51,12 @@ function MobileNavigation({ items }: MainNavigationProps) {
         <SheetContent side="left" className="px-6 py-8 shadow-lg">
           <SheetClose asChild>
             <Link to="/" className="flex items-center space-x-3">
-              <Icons.logo className="size-8 text-primary" aria-hidden="true" />
+              <Icons.logo className="size-10 bg-emeraldGreen text-white p-2 rounded-md" aria-hidden="true" />
               <span className="text-lg font-semibold">{siteConfig.name}</span>
               <span className="sr-only">Home</span>
             </Link>
           </SheetClose>
-          <ScrollArea className="mt-6 h-[calc(100vh-8rem)] pb-6">
+          <ScrollArea className="h-[calc(100vh-8rem)] pb-6">
             <Accordion type="multiple" className="w-full">
               {items?.map((navItem, index) => (
                 <AccordionItem

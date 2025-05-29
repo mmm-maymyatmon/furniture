@@ -6,6 +6,7 @@ import Error from '@/pages/Error';
 import About from '@/pages/About';
 import Login from './pages/auth/Login';
 import {
+  blogInfiniteLoader,
   confirmLoader,
   // homeLoader,
   loginLoader,
@@ -66,6 +67,7 @@ export const router = createBrowserRouter([
                 <Blog />
               </Suspense>
             ),
+            loader: blogInfiniteLoader,
           },
           {
             path: ':postId',

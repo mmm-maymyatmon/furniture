@@ -1,5 +1,6 @@
 import Footer from '@/components/layouts/Footer';
 import Header from '@/components/layouts/Header';
+import NewsLetter from '@/components/layouts/NewsLetter';
 import { Outlet } from 'react-router';
 
 function RootLayout() {
@@ -9,7 +10,7 @@ function RootLayout() {
       <main className="flex-1 mt-15">
         <Outlet />
       </main>
-
+      <NewsLetter/>
       <Footer />
     </div>
   );

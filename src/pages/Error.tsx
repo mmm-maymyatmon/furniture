@@ -1,4 +1,3 @@
-import { Icons } from '@/components/Icons';
 import Footer from '@/components/layouts/Footer';
 import Header from '@/components/layouts/Header';
 import { Button } from '@/components/ui/button';
@@ -11,6 +10,7 @@ import {
 } from '@/components/ui/card';
 import { Link } from 'react-router';
 import { motion } from 'framer-motion';
+import { Icons } from '@/components/icons';
 
 function Error() {
   return (

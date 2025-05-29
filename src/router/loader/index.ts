@@ -1,5 +1,5 @@
-import api, { authApi } from '@/api';
-import { postQuery, productQuery, queryClient } from '@/api/query';
+import  { authApi } from '@/api';
+import { postInfiniteQuery, postQuery, productQuery, queryClient } from '@/api/query';
 import useAuthStore, { Status } from '@/components/store/authStore';
 import { redirect } from 'react-router';
 
@@ -20,8 +20,6 @@ export const homeLoader = async () => {
   await queryClient.ensureQueryData(postQuery("?limit=3"));
   return null;
 }
-
-
 
 
 export const loginLoader = async () => {
@@ -55,3 +53,8 @@ export const confirmLoader = async () => {
 
   return null;
 };
+
+export const blogInfiniteLoader = async () => {
+  await queryClient.ensureInfiniteQueryData(postInfiniteQuery());
+  return null;
+}
