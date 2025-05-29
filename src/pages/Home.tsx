@@ -1,3 +1,5 @@
+import { useQuery } from '@tanstack/react-query';
+
 import { Button } from '@/components/ui/button';
 import { Link, useLoaderData } from 'react-router';
 import mainImg from '@/data/images/couch.png';
@@ -5,16 +7,44 @@ import CarouselCard from '@/components/products/CarouselCard';
 import ProductCard from '@/components/products/ProductCard';
 import { Product } from '@/types';
 import BlogCard from '@/components/blogs/BlogCard';
-
-
-
+import { postQuery, productQuery } from '@/api/query';
+import { Skeleton } from '@/components/ui/skeleton';
 
 function Home() {
-  
-  const { productsData, postsData } = useLoaderData();
+  // const { productsData, postsData } = useLoaderData();
 
-  
-  
+  const {
+    data: productsData,
+    isLoading: isLoadingProduct,
+    isError: isErrorProduct,
+    error: errorProduct,
+    refetch: refetchProduct,
+  } = useQuery(productQuery('?limit=8'));
+
+  const {
+    data: postsData,
+    isLoading: isLoadingPost,
+    isError: isErrorPost,
+    error: errorPost,
+    refetch: refetchPost,
+  } = useQuery(postQuery('?limit=3'));
+
+  if (isLoadingProduct && isLoadingPost) {
+    return <div className="flex flex-col space-y-3">
+    <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+    <div className="space-y-2">
+      <Skeleton className="h-4 w-[250px]" />
+      <Skeleton className="h-4 w-[200px]" />
+    </div>
+  </div>
+  }
+  if (isErrorProduct && isErrorPost) {
+    return <p>{errorProduct.message} & { errorPost.message }</p>
+  }
+
+
+
+
   const Title = ({
     title,
     href,
@@ -59,20 +89,22 @@ function Home() {
           <img src={mainImg} alt="mainvisual" />
         </div>
       </div>
-      <CarouselCard products={productsData.products} />
-      
-      
-      
+      {
+        productsData && <CarouselCard products={productsData.products} />
+      }
+
       <Title title="Recent Blog" href="/blogs" sideText="View All Posts" />
-      <BlogCard posts={postsData.posts} />
-      
+      {
+        postsData && <BlogCard posts={postsData.posts} />
+      }
+
       <Title
         title="Featured Products"
         href="/products"
         sideText="View All Products"
       />
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 my-8">
-        {productsData.products.slice(0,4).map((product: Product) => (
+        { postsData && productsData.products.slice(0, 4).map((product: Product) => (
           <ProductCard product={product} key={product.id} />
         ))}
       </div>

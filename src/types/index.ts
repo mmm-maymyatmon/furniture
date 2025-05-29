@@ -36,7 +36,7 @@ export type Tag = {
 export type Post = {
   id: number;
   author: {
-    fullname: string;
+    fullName: string;
   }
   title: string;
   content: string;

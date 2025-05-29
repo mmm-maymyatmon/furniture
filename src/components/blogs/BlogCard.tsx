@@ -24,7 +24,7 @@ function BlogCard({ posts }: PostProps) {
             {post.title}
           </h2>
           <span className="text-sm text-gray-500">
-            by <span className="font-bold">{post.author.fullname }</span> on{' '}
+            by <span className="font-bold">{post.author?.fullName }</span> on{' '}
             <span className="font-bold">
               {moment(post.updatedAt).format('MMM DD, YYYY')}
             </span>

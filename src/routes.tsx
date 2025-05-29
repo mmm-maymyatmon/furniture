@@ -5,8 +5,19 @@ import Home from '@/pages/Home';
 import Error from '@/pages/Error';
 import About from '@/pages/About';
 import Login from './pages/auth/Login';
-import { confirmLoader, homeLoader, loginLoader, otpLoader } from '@/router/loader';
-import { confirmAction, loginAction, logoutAction, otpAction, registerAction } from './router/action';
+import {
+  confirmLoader,
+  // homeLoader,
+  loginLoader,
+  otpLoader,
+} from '@/router/loader';
+import {
+  confirmAction,
+  loginAction,
+  logoutAction,
+  otpAction,
+  registerAction,
+} from './router/action';
 import AuthRootLayout from './pages/auth/AuthRootLayout';
 import OtpPage from './pages/auth/Otp';
 import SignUpPage from './pages/auth/SignUp';
@@ -29,12 +40,12 @@ export const router = createBrowserRouter([
     path: '/',
     element: <RootLayout />,
     errorElement: <Error />,
-    
+
     children: [
       {
         index: true,
         element: <Home />,
-        loader: homeLoader,
+        // loader: homeLoader,
       },
       {
         path: 'about',
@@ -88,7 +99,6 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      
     ],
   },
   {
@@ -101,14 +111,29 @@ export const router = createBrowserRouter([
     path: '/register',
     element: <AuthRootLayout />,
     children: [
-      { index: true, element: <SignUpPage />, loader: loginLoader, action: registerAction },
-      { path: "otp", element: <OtpPage />, loader: otpLoader, action: otpAction },
-      { path: "confirm-password", element: <ConfirmPasswordPage />, loader: confirmLoader, action: confirmAction },
-    ]
+      {
+        index: true,
+        element: <SignUpPage />,
+        loader: loginLoader,
+        action: registerAction,
+      },
+      {
+        path: 'otp',
+        element: <OtpPage />,
+        loader: otpLoader,
+        action: otpAction,
+      },
+      {
+        path: 'confirm-password',
+        element: <ConfirmPasswordPage />,
+        loader: confirmLoader,
+        action: confirmAction,
+      },
+    ],
   },
   {
     path: '/logout',
     action: logoutAction,
-    loader: ()=> redirect("/")
-  }
+    loader: () => redirect('/'),
+  },
 ]);
