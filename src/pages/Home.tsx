@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { Button } from '@/components/ui/button';
 import { Link, useLoaderData } from 'react-router';
@@ -8,41 +8,42 @@ import ProductCard from '@/components/products/ProductCard';
 import { Product } from '@/types';
 import BlogCard from '@/components/blogs/BlogCard';
 import { postQuery, productQuery } from '@/api/query';
-import { Skeleton } from '@/components/ui/skeleton';
+// import { Skeleton } from '@/components/ui/skeleton';
 
 function Home() {
   // const { productsData, postsData } = useLoaderData();
 
-  const {
-    data: productsData,
-    isLoading: isLoadingProduct,
-    isError: isErrorProduct,
-    error: errorProduct,
-    refetch: refetchProduct,
-  } = useQuery(productQuery('?limit=8'));
+  // const {
+  //   data: productsData,
+  //   isLoading: isLoadingProduct,
+  //   isError: isErrorProduct,
+  //   error: errorProduct,
+  //   refetch: refetchProduct,
+  // } = useQuery(productQuery('?limit=8'));
 
-  const {
-    data: postsData,
-    isLoading: isLoadingPost,
-    isError: isErrorPost,
-    error: errorPost,
-    refetch: refetchPost,
-  } = useQuery(postQuery('?limit=3'));
+  // const {
+  //   data: postsData,
+  //   isLoading: isLoadingPost,
+  //   isError: isErrorPost,
+  //   error: errorPost,
+  //   refetch: refetchPost,
+  // } = useQuery(postQuery('?limit=3'));
 
-  if (isLoadingProduct && isLoadingPost) {
-    return <div className="flex flex-col space-y-3">
-    <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-    <div className="space-y-2">
-      <Skeleton className="h-4 w-[250px]" />
-      <Skeleton className="h-4 w-[200px]" />
-    </div>
-  </div>
-  }
-  if (isErrorProduct && isErrorPost) {
-    return <p>{errorProduct.message} & { errorPost.message }</p>
-  }
+  // if (isLoadingProduct && isLoadingPost) {
+  //   return <div className="flex flex-col space-y-3">
+  //   <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+  //   <div className="space-y-2">
+  //     <Skeleton className="h-4 w-[250px]" />
+  //     <Skeleton className="h-4 w-[200px]" />
+  //   </div>
+  // </div>
+  // }
+  // if (isErrorProduct && isErrorPost) {
+  //   return <p>{errorProduct.message} & { errorPost.message }</p>
+  // }
 
-
+  const { data: productsData } = useSuspenseQuery(productQuery("?limit=8"));
+  const { data: postsData } = useSuspenseQuery(postQuery("?limit=8"));
 
 
   const Title = ({
