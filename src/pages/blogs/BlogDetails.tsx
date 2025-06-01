@@ -1,14 +1,19 @@
-import { Link, useParams } from 'react-router';
-import { Posts } from '@/data/posts';
+import { Link, useLoaderData } from 'react-router';
 import moment from 'moment';
 import { Button } from '@/components/ui/button';
-import { Icons } from '@/components/Icons';
+import { Icons } from '@/components/icons';
 import RichTextRenderer from '@/components/blogs/RichTextRenderer';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { onePostQuery, postQuery } from '@/api/query';
+import { Post, Tag } from '@/types';
 
 function BlogDetails() {
-  const { postId } = useParams();
-  const post = Posts.find((post) => post.id === postId);
-
+  // const { postId } = useParams();
+  const { postId } = useLoaderData();
+  const { data: postsData } = useSuspenseQuery(postQuery("?limit=6"));
+  const { data: postDetail} = useSuspenseQuery(onePostQuery(postId));
+  // const post = Posts.find((post) => post.id === postId);
+  const imageURL = import.meta.env.VITE_IMG_URL;
   return (
     <div className="container mx-auto py-10 lg:px-0 px-4">
       <div className="flex flex-col gap-8 lg:flex-row justify-between">
@@ -20,39 +25,40 @@ function BlogDetails() {
             </Link>
           </Button>
 
-          {post ? (
+          {postDetail ? (
             <div className="space-y-6">
               <div>
-                <h1 className="text-3xl font-bold">{post.title}</h1>
+                <h1 className="text-3xl font-bold">{postDetail.post.title}</h1>
                 <span className="text-sm text-gray-500">
-                  by <span className="font-semibold">{post.author}</span> on{' '}
+                  by <span className="font-semibold">{postDetail.post.author.fullName}</span> on{' '}
                   <span className="font-semibold">
-                    {moment(post.updatedAt).format('MMM DD, YYYY')}
+                    {moment(postDetail.post.updatedAt).format('MMM DD, YYYY')}
                   </span>
                 </span>
               </div>
 
               <div className="mt-4">
                 <img
-                  src={post.image}
-                  alt={post.title}
+                  src={imageURL + postDetail.post.image}
+                  alt={postDetail.post.title}
+                  loading='lazy'
+                  decoding='async'
                   className="w-full rounded-xl shadow-lg"
                 />
               </div>
 
               <div className="my-6">
-                <RichTextRenderer content={post.body} />
+                <RichTextRenderer content={postDetail.post.body} />
               </div>
 
               <div className="space-x-2">
-                {post.tags && post.tags.length > 0 ? (
-                  post.tags.map((tag, index) => (
+                {postDetail.post.tags && postDetail.post.tags.length > 0 ? (
+                  postDetail.post.tags.map((tag: Tag) => (
                     <Button
-                      key={index}
                       variant="secondary"
                       className="py-2 px-4 text-sm rounded-full border border-gray-300"
                     >
-                      {tag}
+                      {tag.name}
                     </Button>
                   ))
                 ) : (
@@ -76,7 +82,7 @@ function BlogDetails() {
           </div>
 
           <div className="space-y-4">
-            {Posts.map((post) => (
+            {postsData.posts.map((post: Post) => (
               <Link
                 to={`/blogs/${post.id}`}
                 key={post.id}
@@ -84,8 +90,10 @@ function BlogDetails() {
               >
                 <div className="w-16 h-16 overflow-hidden rounded-lg">
                   <img
-                    src={post.image}
+                    src={imageURL + post.image}
                     alt={post.title}
+                    loading="lazy"
+                    decoding="async"
                     className="object-cover w-full h-full"
                   />
                 </div>

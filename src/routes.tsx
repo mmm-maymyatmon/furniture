@@ -11,6 +11,7 @@ import {
   // homeLoader,
   loginLoader,
   otpLoader,
+  postLoader,
 } from '@/router/loader';
 import {
   confirmAction,
@@ -76,6 +77,7 @@ export const router = createBrowserRouter([
                 <BlogDetails />
               </Suspense>
             ),
+            loader: postLoader,
           },
         ],
       },
@@ -98,6 +100,7 @@ export const router = createBrowserRouter([
                 <ProductDetails />
               </Suspense>
             ),
+            
           },
         ],
       },

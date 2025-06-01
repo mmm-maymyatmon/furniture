@@ -43,7 +43,7 @@ function Home() {
   // }
 
   const { data: productsData } = useSuspenseQuery(productQuery("?limit=8"));
-  const { data: postsData } = useSuspenseQuery(postQuery("?limit=8"));
+  const { data: postsData } = useSuspenseQuery(postQuery("?limit=3"));
 
 
   const Title = ({
