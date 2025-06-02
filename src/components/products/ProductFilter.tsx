@@ -12,11 +12,15 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-// import { toast } from "@/components/hooks/use-toast"
 import type { Category } from '@/types';
 
 interface FilterProps {
-  filterList: { categories: Category[]; types: Category[] };
+  categories: Category[];
+  types: Category[] 
+}
+
+interface ProductFilterProps {
+  filterList: FilterProps;
 }
 
 const FormSchema = z.object({
@@ -30,7 +34,7 @@ const FormSchema = z.object({
   }),
 });
 
-function ProductFilter({ filterList }: FilterProps) {
+function ProductFilter({ filterList }: ProductFilterProps) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -75,7 +79,7 @@ function ProductFilter({ filterList }: FilterProps) {
                             onCheckedChange={(checked) => {
                               const id = item.id.toString();
                               return checked
-                                ? field.onChange([...field.value, id])
+                                ? field.onChange([...field.value, item.id])
                                 : field.onChange(
                                     field.value.filter((value) => value !== id)
                                   );
@@ -83,7 +87,7 @@ function ProductFilter({ filterList }: FilterProps) {
                           />
                         </FormControl>
                         <FormLabel className="text-sm font-normal">
-                          {item.label}
+                          {item.name}
                         </FormLabel>
                       </FormItem>
                     )}
@@ -123,7 +127,7 @@ function ProductFilter({ filterList }: FilterProps) {
                           />
                         </FormControl>
                         <FormLabel className="text-sm font-normal">
-                          {item.label}
+                          {item.name}
                         </FormLabel>
                       </FormItem>
                     )}

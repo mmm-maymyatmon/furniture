@@ -1,5 +1,5 @@
 import  { authApi } from '@/api';
-import { postInfiniteQuery, postQuery, productQuery, queryClient, onePostQuery } from '@/api/query';
+import { postInfiniteQuery, postQuery, productQuery, queryClient, onePostQuery, categoryTypeQuery, productInfiniteQuery } from '@/api/query';
 import useAuthStore, { Status } from '@/components/store/authStore';
 import { LoaderFunctionArgs, redirect } from 'react-router';
 
@@ -67,4 +67,10 @@ export const postLoader = async ({ params }: LoaderFunctionArgs ) => {
   await queryClient.ensureQueryData(postQuery("?limit=6"))
   await queryClient.ensureQueryData(onePostQuery(Number(params.postId)));
   return { postId: params.postId}
+}
+
+export const productInfiniteLoader = async () => {
+  await queryClient.ensureQueryData(categoryTypeQuery());
+  await queryClient.prefetchInfiniteQuery(productInfiniteQuery());
+  return null;
 }
