@@ -58,8 +58,8 @@ export function InputOTPForm({
       <div className="flex flex-col gap-6">
         <div className="flex flex-col items-center gap-2">
           <Link to="/" className="flex flex-col items-center gap-2 font-medium">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md">
-              <Icons.logo className="w-6 h-6 mr-2" aria-hidden="true" />
+            <div className="flex items-center justify-center rounded-md">
+            <Icons.logo className="size-10 bg-emeraldGreen text-white p-2 rounded-md mr-2" aria-hidden="true" />
             </div>
             <span className="sr-only">OTP verify form</span>
           </Link>

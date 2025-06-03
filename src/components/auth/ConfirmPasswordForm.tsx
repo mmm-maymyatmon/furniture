@@ -71,8 +71,8 @@ export function ConfirmPasswordForm({
               to="/"
               className="flex flex-col items-center gap-2 font-medium"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-md">
-                <Icons.logo className="w-6 h-6 mr-2" aria-hidden="true" />
+              <div className="flex items-center justify-center rounded-md">
+              <Icons.logo className="size-10 bg-emeraldGreen text-white p-2 rounded-md" aria-hidden="true" />
               </div>
               <span className="sr-only">Confirm Password</span>
             </Link>

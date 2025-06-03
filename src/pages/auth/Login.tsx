@@ -1,4 +1,4 @@
-import { Icons } from "@/components/Icons";
+import { Icons } from "@/components/icons";
 import { Link } from "react-router";
 import Banner from "@/assets/banner.jpg";
 import LoginForm from "@/components/auth/LoginForm";
@@ -10,7 +10,7 @@ function Login() {
         to="/"
         className="fixed top-6 left-6 z-50 flex items-center text-xl font-semibold text-primary hover:opacity-90 transition-all"
       >
-        <Icons.logo className="w-6 h-6 mr-2" aria-hidden="true" />
+        <Icons.logo className="size-10 bg-emeraldGreen text-white p-2 rounded-md mr-2" aria-hidden="true" />
         <span>HomeNest</span>
       </Link>
 

@@ -1,12 +1,11 @@
-import { Icons } from "@/components/Icons"
+import { Icons } from "@/components/icons"
 import { Link } from "react-router"
-import { RegisterForm } from "@/components/auth/RegisterForm"
 
 function Register() {
   return (
     <div className="relative">
       <Link to="/" className="fixed top-6 left-8 flex items-center text-lg font-bold tracking-tight">
-        <Icons.logo className="size-6 mr-2" aria-hidden="true" />
+      <Icons.logo className="size-10 bg-emeraldGreen text-white p-2 rounded-md" aria-hidden="true" />
         <span>HomeNest</span>
       </Link>
 

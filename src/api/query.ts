@@ -83,8 +83,8 @@ const fetchInfiniteProducts = async ({
   types: string | null;
 }) => {
   let query = pageParam ? `?limit=9&cursor=${pageParam}` : '?limit=9';
-  if (categories) query += `&categories=${categories}`;
-  if (types) query += `&types=${types}`;
+  if (categories) query += `&category=${categories}`;
+  if (types) query += `&type=${types}`;
   const response = await api.get(`user/products${query}`);
   return response.data;
 };
@@ -99,10 +99,9 @@ export const productInfiniteQuery = (
     categories ?? undefined,
     types ?? undefined,
   ],
-    queryFn: ({pageParam}: {pageParam?: number | null}) =>
-        fetchInfiniteProducts({ pageParam, categories, types }),
-    placeholderData: keepPreviousData,
-    initialPageParam: null, //Start with no cursor
+  queryFn: ({ pageParam }: { pageParam?: number | null }) =>
+    fetchInfiniteProducts({ pageParam, categories, types }),
+  placeholderData: keepPreviousData,
+  initialPageParam: null, //Start with no cursor
   getNextPageParam: (lastPage, pages) => lastPage.nextCursor ?? undefined,
-
 });
