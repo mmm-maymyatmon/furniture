@@ -1,7 +1,6 @@
-import { Link, useParams } from 'react-router';
-import { products } from '@/data/products';
+import {  useLoaderData, useNavigate } from 'react-router';
 import { Button } from '@/components/ui/button';
-import { Icons } from '@/components/Icons';
+import { Icons } from '@/components/icons';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import ProductCard from '@/components/products/ProductCard';
 import { Card, CardContent } from '@/components/ui/card';
@@ -22,22 +21,30 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { oneProductQuery, productQuery } from '@/api/query';
+import type { Image, Product } from '@/types';
 
+const imageURL = import.meta.env.VITE_IMG_URL;
 function ProductDetails() {
-  const { productId } = useParams();
-  const product = products.find((product) => product.id === Number(productId));
+  
+  // const { productId } = useParams();
+  // const product = products.find((product) => product.id === Number(productId));
 
-  if (!product) {
-    return <div>Product not found</div>;
-  }
+  const navigate = useNavigate();
+  const { productId } = useLoaderData();
+  const { data: productsData } = useSuspenseQuery(productQuery('?limit=4'));
+  const { data: productDetail } = useSuspenseQuery(oneProductQuery(productId));
+
+  // if (!product) {
+  //   return <div>Product not found</div>;
+  // }
 
   return (
     <div className="container mx-auto py-10 lg:px-0 px-4">
-      <Button variant="outline" asChild>
-        <Link to="/products" className="flex items-center">
-          <Icons.arrowLeft className="mr-2" />
-          All Products
-        </Link>
+      <Button variant="outline" className='mt-8' onClick={() => navigate(-1)}>
+      <Icons.arrowLeft className="mr-2" />
+      All Products
       </Button>
       <div className="flex flex-col lg:flex-row gap-10 mt-10">
         <div className="w-full md:w-1/2">
@@ -49,14 +56,16 @@ function ProductDetails() {
             ]}
           >
             <CarouselContent>
-              {product.images?.map((img, index) => (
-                <CarouselItem key={index} className="p-0">
+              {productDetail.product.images?.map((img: Image) => (
+                <CarouselItem key={img.id} className="p-0">
                   <Card className="p-0">
                     <CardContent className="flex aspect-square items-center justify-center p-0">
                       <img
-                        src={img}
-                        alt={`Product ${index + 1}`}
+                        src={imageURL + img.path}
+                        alt={productDetail.product.name}
                         className="size-full object-cover"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </CardContent>
                   </Card>
@@ -69,29 +78,29 @@ function ProductDetails() {
         </div>
         <div className="flex w-full flex-col gap-4  md:w-1/2">
           <h2 className="line-clamp-1 text-2xl font-bold mb-2">
-            {product?.name}
+            {productDetail.product.name}
           </h2>
           <p className="text-base text-muted-foreground">
-            {formatPrice(Number(product?.price))}
+            {formatPrice(Number(productDetail.product.price))}
           </p>
           <Separator className="my-1.5" />
           <p className="text-base text-muted-foreground">
-            {product?.inventory} in stock
+            {productDetail.product.inventory} in stock
           </p>
           <div className="flex justify-between items-center">
-            <Rating rating={Number(product?.rating)} />
+            <Rating rating={Number(productDetail.product.rating)} />
             <AddToFavorite
-              productId={String(product?.id)}
-              rating={Number(product?.rating)}
+              productId={String(productDetail.product.id)}
+              rating={Number(productDetail.product.rating)}
             />
           </div>
-          <AddToCartForm canBuy={product?.status === 'active'} />
+          <AddToCartForm canBuy={productDetail.product.status === 'ACTIVE'} />
           <Separator className="my-1.5" />
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1" className="border-none">
               <AccordionTrigger>Description</AccordionTrigger>
               <AccordionContent>
-                {product?.description ??
+                {productDetail.product.description ??
                   'No description is available for this product.'}
               </AccordionContent>
             </AccordionItem>
@@ -105,7 +114,7 @@ function ProductDetails() {
         </h2>
         <ScrollArea className="whitespace-nowrap">
           <div className="w-full flex space-x-4 p-0">
-            {products.slice(0, 4).map((item) => (
+            {productsData.products.slice(0, 4).map((item: Product) => (
               <ProductCard
                 key={item.id}
                 product={item}

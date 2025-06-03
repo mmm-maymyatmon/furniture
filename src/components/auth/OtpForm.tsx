@@ -21,7 +21,7 @@ import {
   InputOTPSeparator,
 } from '@/components/ui/input-otp';
 import { REGEXP_ONLY_DIGITS } from 'input-otp';
-import { Icons } from '@/components/Icons';
+import { Icons } from '@/components/icons';
 
 const FormSchema = z.object({
   otp: z.string().min(6, {

@@ -11,7 +11,8 @@ export interface NavItemWithChildren extends NavItem {
 
 export type MainNavItem = NavItemWithChildren;
 
-type Image = {
+export type Image = {
+  name: string | undefined;
   id: number;
   path: string;
 }

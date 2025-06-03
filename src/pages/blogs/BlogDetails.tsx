@@ -9,10 +9,11 @@ import { Post, Tag } from '@/types';
 
 function BlogDetails() {
   // const { postId } = useParams();
+  // const post = Posts.find((post) => post.id === postId);
   const { postId } = useLoaderData();
   const { data: postsData } = useSuspenseQuery(postQuery("?limit=6"));
   const { data: postDetail} = useSuspenseQuery(onePostQuery(postId));
-  // const post = Posts.find((post) => post.id === postId);
+  
   const imageURL = import.meta.env.VITE_IMG_URL;
   return (
     <div className="container mx-auto py-10 lg:px-0 px-4">

@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { cn } from '@/lib/utils';
 
 import { Button } from '@/components/ui/button';
-import { Icons } from '@/components/Icons';
+import { Icons } from '@/components/icons';
 import PasswordInput from './PasswordInput';
 
 import {

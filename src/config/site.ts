@@ -13,31 +13,22 @@ export const siteConfig = {
     {
       title: 'Products',
       card: [
+        
         {
-          title: 'Wooden',
-          href: '/products/wooden',
-          description: 'Comfortable with Wooden furniture.',
-        },
-        {
-          title: 'Modern',
-          href: '/products/modern',
+          title: 'Metal',
+          href: '/products?categories=1',
           description: 'Sleek and stylish modern designs.',
         },
         {
-          title: 'Classic',
-          href: '/products/classic',
+          title: 'Wooden',
+          href: '/products?categories=2',
+          description: 'Comfortable with Wooden furniture.',
+        },
+        {
+          title: 'Bamboo',
+          href: '/products?categories=3',
           description: 'Elegant and timeless classic furniture.',
-        },
-        {
-          title: 'Luxury',
-          href: '/products/luxury',
-          description: 'Premium furniture for a luxurious lifestyle.',
-        },
-        {
-          title: 'Office',
-          href: '/products/office',
-          description: 'Professional office furniture for productivity.',
-        },
+        }
       ],
       menu: [
         {

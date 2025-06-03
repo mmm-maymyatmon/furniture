@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Icons } from '@/components/Icons';
+import { Icons } from '@/components/icons';
 
 import {
   Form,
