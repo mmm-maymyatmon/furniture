@@ -17,6 +17,7 @@ import {
 } from '@/router/loader';
 import {
   confirmAction,
+  favoriteAction,
   loginAction,
   logoutAction,
   otpAction,
@@ -104,6 +105,7 @@ export const router = createBrowserRouter([
               </Suspense>
             ),
             loader: productLoader,
+            action: favoriteAction,
           },
         ],
       },

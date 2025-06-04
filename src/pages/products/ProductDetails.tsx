@@ -14,6 +14,7 @@ import { Separator } from '@/components/ui/separator';
 import { formatPrice } from '@/lib/utils';
 import Rating from '@/components/Rating';
 import AddToFavorite from '@/components/AddToFavorite';
+// import AddToFavorite from '@/components/TanstackOptimistic';
 import AddToCartForm from '@/components/products/AddToCartForm';
 import {
   Accordion,
@@ -59,11 +60,11 @@ function ProductDetails() {
               {productDetail.product.images?.map((img: Image) => (
                 <CarouselItem key={img.id} className="p-0">
                   <Card className="p-0">
-                    <CardContent className="flex aspect-square items-center justify-center p-0">
+                    <CardContent className="flex w-full md:h-120 h-full aspect-square items-center justify-center p-0">
                       <img
                         src={imageURL + img.path}
                         alt={productDetail.product.name}
-                        className="size-full object-cover"
+                        className="size-full object-cover transition-transform duration-300 hover:scale-110"
                         loading="lazy"
                         decoding="async"
                       />
@@ -92,6 +93,7 @@ function ProductDetails() {
             <AddToFavorite
               productId={String(productDetail.product.id)}
               rating={Number(productDetail.product.rating)}
+              isFavorite={productDetail.product.User.length === 1}
             />
           </div>
           <AddToCartForm canBuy={productDetail.product.status === 'ACTIVE'} />

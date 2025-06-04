@@ -2,6 +2,7 @@ import { redirect, ActionFunctionArgs } from 'react-router';
 import api, { authApi } from '@/api';
 import { AxiosError } from 'axios';
 import useAuthStore, { Status } from '@/components/store/authStore';
+import { queryClient } from '@/api/query';
 
 export const loginAction = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
@@ -100,7 +101,6 @@ export const confirmAction = async ({ request }: ActionFunctionArgs) => {
     token: authStore.token,
   };
   try {
-
     const response = await authApi.post('confirm-password', credentials);
 
     if (response.status !== 201) {
@@ -115,4 +115,34 @@ export const confirmAction = async ({ request }: ActionFunctionArgs) => {
       return error.response?.data || { error: 'Registration failed!' };
     } else throw error;
   }
+};
+
+export const favoriteAction = async ({
+  request,
+  params,
+}: ActionFunctionArgs) => {
+  const formData = await request.formData();
+  if (!params.productId) {
+    throw new Error('No Product ID provided');
+  }
+  const data = {
+    productId: Number(params.productId),
+    favorite: formData.get('favorite') === 'true',
+  };
+
+  try {
+    const response = await api.patch('user/products/toggle-favorite', data);
+    if (response.status !== 200) {
+      return { error: response.data || 'Adding to favorites failed!' };
+    }
+    await queryClient.invalidateQueries({ queryKey: ['products', 'detail', params.productId] });
+    return null;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      return error.response?.data || { error: 'Adding to favorites failed!' };
+    } else {
+      throw error;
+    }
+  }
+
 };
