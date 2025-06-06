@@ -120,7 +120,7 @@ export default function Editable({
           className="size-8"
           onClick={onDelete}
         >
-          <Icons.trash className="size-3" aria-hidden="true" />
+          <Icons.trash className="size-4 text-red-500" aria-hidden="true" />
           <span className="sr-only">Delete item</span>
         </Button>
       </form>

@@ -14,9 +14,13 @@ function Header() {
         <ProgressBar/>
         <MainNavigation items={siteConfig.mainNav} />
         <MobileNavigation items={siteConfig.mainNav} />
-        <div className="flex w-[80px] items-center justify-between">
+        <div className="flex items-center justify-between">
+          <div className='mr-2'>
           <CartSheet/>
+          </div>
+          <div className='mr-2'>
           <ModeToggle />
+          </div>
           <AuthDropdown user={User} />
         </div>
       </div>

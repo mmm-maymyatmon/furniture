@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Roboto:wght@400;700&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
   font-weight: 400;
 
@@ -141,6 +142,7 @@
   body {
     @apply bg-background text-foreground;
   }
+
 }
 @layer utilities {
   .bg-emeraldGreen {
@@ -175,4 +177,8 @@
       transform: "translateX(200%)";
     }
   }
+}
+
+.container {
+  width: 90%;
 }

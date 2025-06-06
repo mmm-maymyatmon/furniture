@@ -56,7 +56,7 @@ function Home() {
     sideText: string;
   }) => (
     <div>
-      <div className="container flex justify-between mt-10 lg:mt-30">
+      <div className="flex justify-between">
         <h2 className="text-2xl font-bold">{title}</h2>
         <Link to={href} className="underline">
           {sideText}
@@ -90,15 +90,20 @@ function Home() {
           <img src={mainImg} alt="mainvisual" />
         </div>
       </div>
+      <div className='sm:mt-30 mt-10'>
       {
         productsData && <CarouselCard products={productsData.products} />
       }
+      </div>
 
+      <div className='sm:mt-30 mt-10'>
       <Title title="Recent Blog" href="/blogs" sideText="View All Posts" />
       {
         postsData && <BlogCard posts={postsData.posts} />
       }
+      </div>
 
+      <div className='sm:mt-30 mt-10'>
       <Title
         title="Featured Products"
         href="/products"
@@ -108,6 +113,7 @@ function Home() {
         { postsData && productsData.products.slice(0, 4).map((product: Product) => (
           <ProductCard product={product} key={product.id} />
         ))}
+      </div>
       </div>
     </div>
   );

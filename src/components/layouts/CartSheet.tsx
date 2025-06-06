@@ -26,7 +26,7 @@ export default function CartSheet() {
   const { carts } = useCartStore();
 
   return (
-    <Sheet>
+    <Sheet modal={false}>
       <SheetTrigger asChild>
         <Button
           variant="outline"
@@ -54,7 +54,7 @@ export default function CartSheet() {
         <Separator className="my-2" />
         {carts.length > 0 ? (
           <>
-            <ScrollArea className="my-4 h-[68vh] pb-8">
+            <ScrollArea className="mb-4 h-[50vh] pb-8">
               <div className="flex-1">
                 {carts.map((cart) => (
                   <CartItem cart={cart} key={cart.id} />
@@ -63,7 +63,7 @@ export default function CartSheet() {
             </ScrollArea>
             <div className="space-y-4">
               <Separator />
-              <div className="space-y-1.5 text-sm">
+              <div className="space-y-1.5 px-4 text-sm">
                 <div className="flex justify-between">
                   <span>Shipping</span>
                   <span>Free</span>

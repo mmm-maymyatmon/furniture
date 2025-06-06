@@ -32,7 +32,7 @@ function AuthDropdown({ user }: UserProps) {
   const initialName = `${user.firstName?.charAt(0) ?? ''}${user.lastName?.charAt(0) ?? ''}`;
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" className="size-8 rounded-full">
           <Avatar className="size-8">
