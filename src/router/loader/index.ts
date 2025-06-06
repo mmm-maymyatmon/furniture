@@ -44,11 +44,31 @@ export const otpLoader = async () => {
   return null;
 };
 
+export const verifyLoader = async () => {
+  const authStore = useAuthStore.getState();
+
+  if (authStore.status !== Status.verify) {
+    return redirect('/reset');
+  }
+
+  return null;
+};
+
 export const confirmLoader = async () => {
   const authStore = useAuthStore.getState();
 
   if (authStore.status !== Status.confirm) {
     return redirect('/register');
+  }
+
+  return null;
+};
+
+export const newPasswordLoader = async () => {
+  const authStore = useAuthStore.getState();
+
+  if (authStore.status !== Status.reset) {
+    return redirect('/reset');
   }
 
   return null;
@@ -83,4 +103,5 @@ export const productLoader = async ({ params }: LoaderFunctionArgs ) => {
   await queryClient.ensureQueryData(oneProductQuery(Number(params.productId)));
   return { productId: params.productId}
 }
+
 

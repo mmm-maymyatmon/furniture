@@ -42,7 +42,7 @@ export default function LoginForm() {
   const actionData = useActionData() as {
     error?: string;
     message?: string;
-  }
+  };
 
   const isSubmitting = navigation.state === 'submitting';
 
@@ -117,9 +117,9 @@ export default function LoginForm() {
                 </FormItem>
               )}
             />
-            {
-              actionData && <p className='text-xs text-red-400'>{ actionData.message }</p>
-            }
+            {actionData && (
+              <p className="text-xs text-red-400">{actionData.message}</p>
+            )}
             <div className="grid gap-4">
               <Button type="submit" className="mt-2 w-full">
                 {isSubmitting ? (
@@ -156,12 +156,12 @@ export default function LoginForm() {
                   Or continue with
                 </span>
               </div>
-              <Button variant="outline" className="w-full">
-                Sign In with Google
-              </Button>
             </div>
           </form>
         </Form>
+        <Button variant="outline" className="w-full mt-5">
+          Sign In with Google
+        </Button>
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?{' '}
           <Link to="/register" className="underline">

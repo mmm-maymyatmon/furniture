@@ -10,23 +10,31 @@ import {
   confirmLoader,
   // homeLoader,
   loginLoader,
+  newPasswordLoader,
   otpLoader,
   postLoader,
   productInfiniteLoader,
   productLoader,
+  verifyLoader,
 } from '@/router/loader';
 import {
   confirmAction,
   favoriteAction,
   loginAction,
   logoutAction,
+  newPasswordAction,
   otpAction,
   registerAction,
+  resetAction,
+  verifyAction,
 } from './router/action';
 import AuthRootLayout from './pages/auth/AuthRootLayout';
 import OtpPage from './pages/auth/Otp';
 import SignUpPage from './pages/auth/SignUp';
 import ConfirmPasswordPage from './pages/auth/ConfirmPassword';
+import ResetPasswordPage from './pages/auth/ResetPasswordPage';
+import VerifyOtpPage from './pages/auth/VerifyOtpPage';
+import NewPasswordPage from './pages/auth/NewPasswordPage';
 
 const Blog = lazy(() => import('@/pages/blogs/Blog'));
 const BlogDetails = lazy(() => import('@/pages/blogs/BlogDetails'));
@@ -146,4 +154,29 @@ export const router = createBrowserRouter([
     action: logoutAction,
     loader: () => redirect('/'),
   },
+  {
+    path: "/reset",
+    element: <AuthRootLayout />,
+    children: [
+      {
+        index: true,
+        element: <ResetPasswordPage />,
+        action: resetAction,
+      }, 
+      {
+        path: "verify",
+        element: <VerifyOtpPage />,
+        loader: verifyLoader,
+        action: verifyAction
+      
+      },
+      {
+        path: "new-password",
+        element: <NewPasswordPage />,
+        loader: newPasswordLoader,
+        action: newPasswordAction
+      
+      }
+    ]
+  }
 ]);
