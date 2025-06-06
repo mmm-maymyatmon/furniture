@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { DropdownMenuGroup } from '@radix-ui/react-dropdown-menu';
-import { Icons } from '../Icons';
+import { Icons } from '../icons';
 
 interface UserProps {
   user: User;
@@ -33,7 +33,7 @@ function AuthDropdown({ user }: UserProps) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <Button variant="secondary" className="size-8 rounded-full">
           <Avatar className="size-8">
             <AvatarImage

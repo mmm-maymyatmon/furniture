@@ -1,6 +1,6 @@
 import type { Product } from '@/types';
 import { Link } from 'react-router';
-import { Icons } from '@/components/Icons';
+import { Icons } from '@/components/icons';
 import {
   Card,
   CardContent,
@@ -12,6 +12,7 @@ import {
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Button } from '../ui/button';
 import { formatPrice, cn } from '@/lib/utils';
+import { useCartStore } from '@/store/cartStore';
 
 interface ProductProps extends React.HTMLAttributes<HTMLDivElement> {
   product: Product;
@@ -19,6 +20,20 @@ interface ProductProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const imageUrl = import.meta.env.VITE_IMG_URL;
 function ProductCard({ product, className }: ProductProps) {
+  const { carts, addItem } = useCartStore();
+  const cartItem = carts.find((item) => item.id === product.id);
+
+  const handleAddToCart = () => {
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.images[0].path,
+      quantity: 1
+    })
+  }
+
+
   return (
     <Card className={cn('w-full overflow-hidden rounded-lg pt-0', className)}>
       <Link to={`/products/${product.id}`}>
@@ -46,13 +61,14 @@ function ProductCard({ product, className }: ProductProps) {
         </CardDescription>
       </CardContent>
       <CardFooter>
-        {product.status === 'sold' ? (
+        {product.status === 'INACTIVE' ? (
           <Button size="sm" disabled aria-label="Sold out" className="w-full">
             Sold out
           </Button>
         ) : (
-          <Button className="w-full bg-emeraldGreen">
-            <Icons.plus /> Add to cart
+          <Button className="w-full h-8 bg-emeraldGreen rounded-sm font-bold" onClick={handleAddToCart} disabled={!!cartItem} >
+              {!cartItem && <Icons.plus className="size-4" />}
+              {!cartItem ? 'Add to cart' : 'Added Item'}
           </Button>
         )}
       </CardFooter>

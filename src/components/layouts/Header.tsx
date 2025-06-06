@@ -5,6 +5,7 @@ import { ModeToggle } from '@/components/ModeToggle';
 import AuthDropdown from '@/components/layouts/AuthDropdown';
 import { User } from '@/data/user';
 import ProgressBar from '@/components/ProgressBar';
+import CartSheet from './CartSheet';
 
 function Header() {
   return (
@@ -14,6 +15,7 @@ function Header() {
         <MainNavigation items={siteConfig.mainNav} />
         <MobileNavigation items={siteConfig.mainNav} />
         <div className="flex w-[80px] items-center justify-between">
+          <CartSheet/>
           <ModeToggle />
           <AuthDropdown user={User} />
         </div>

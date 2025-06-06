@@ -1,6 +1,6 @@
 import  { authApi } from '@/api';
 import { postInfiniteQuery, postQuery, productQuery, queryClient, onePostQuery, categoryTypeQuery, productInfiniteQuery, oneProductQuery } from '@/api/query';
-import useAuthStore, { Status } from '@/components/store/authStore';
+import useAuthStore, { Status } from '@/store/authStore';
 import { LoaderFunctionArgs, redirect } from 'react-router';
 
 // export const homeLoader = async () => {

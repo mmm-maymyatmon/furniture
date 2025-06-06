@@ -1,7 +1,7 @@
 import { redirect, ActionFunctionArgs } from 'react-router';
 import api, { authApi } from '@/api';
 import { AxiosError } from 'axios';
-import useAuthStore, { Status } from '@/components/store/authStore';
+import useAuthStore, { Status } from '@/store/authStore';
 import { queryClient } from '@/api/query';
 
 export const loginAction = async ({ request }: ActionFunctionArgs) => {

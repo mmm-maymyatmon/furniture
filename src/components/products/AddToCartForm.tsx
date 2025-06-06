@@ -12,44 +12,67 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Icons } from '@/components/Icons';
+import { Icons } from '@/components/icons';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
+import { useCartStore } from '@/store/cartStore';
+import { useEffect } from 'react';
 
 const quantitySchema = z.object({
   quantity: z
-    .number({ invalid_type_error: 'Enter a valid number' })
-    .min(1, { message: 'Minimum quantity is 1' }),
+    .string()
+    .min(1, 'Must not be empty')
+    .max(4, 'Too Many! Is it real?')
+    .regex(/^\d+$/, 'Must be a number'),
 });
 
 interface ShowBuyNowProps {
   canBuy: boolean;
+  onHandleCart: (quantity: number) => void;
+  idInCart: number;
 }
 
-export default function AddToCartForm({ canBuy }: ShowBuyNowProps) {
+export default function AddToCartForm({
+  canBuy,
+  onHandleCart,
+  idInCart,
+}: ShowBuyNowProps) {
+  const cartItem = useCartStore((state) =>
+    state.carts.find((item) => item.id === idInCart)
+  );
+
   console.log(canBuy);
   const form = useForm<z.infer<typeof quantitySchema>>({
     resolver: zodResolver(quantitySchema),
     defaultValues: {
-      quantity: 1,
+      quantity: cartItem ? cartItem.quantity.toString() : '1',
     },
   });
 
-  const quantity = form.watch('quantity');
+  const { setValue, watch } = form;
+  const currentQuantity = Number(watch('quantity'));
 
-  const increment = () => {
-    form.setValue('quantity', quantity + 1);
+  useEffect(() => {
+    if (cartItem) {
+      setValue('quantity', cartItem.quantity.toString(), {
+        shouldValidate: true,
+      });
+    }
+  }, [cartItem, setValue]);
+
+  const handleDecrease = () => {
+    const newQuantity = Math.max(currentQuantity - 1, 0); // Min limit 0
+    setValue('quantity', newQuantity.toString(), { shouldValidate: true });
   };
 
-  const decrement = () => {
-    if (quantity > 1) {
-      form.setValue('quantity', quantity - 1);
-    }
+  const handleIncrease = () => {
+    const newQuantity = Math.min(currentQuantity + 1, 9999); // Max limit 9999
+    setValue('quantity', newQuantity.toString(), { shouldValidate: true });
   };
 
   function onSubmit(values: z.infer<typeof quantitySchema>) {
-    toast.success('Product is added to cart successfully.');
-    console.log(values);
+    onHandleCart(Number(values.quantity));
+    toast.success( cartItem? "Updated Cart Successfully" : 'Product is added to cart successfully.' );
   }
 
   return (
@@ -70,7 +93,8 @@ export default function AddToCartForm({ canBuy }: ShowBuyNowProps) {
                   variant="outline"
                   size="icon"
                   className="rounded-r-none size-8"
-                  onClick={decrement}
+                  onClick={handleDecrease}
+                  disabled={currentQuantity <= 1}
                 >
                   <Icons.minus className="size-3" aria-hidden="true" />
                 </Button>
@@ -78,9 +102,10 @@ export default function AddToCartForm({ canBuy }: ShowBuyNowProps) {
                   <Input
                     type="number"
                     inputMode="numeric"
-                    min={0}
+                    min={1}
+                    max={9999}
                     {...field}
-                    className="w-16 h-8 rounded-none  border-x-0 text-center"
+                    className="h-8 w-full rounded-none border-x-0 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                 </FormControl>
                 <Button
@@ -88,7 +113,8 @@ export default function AddToCartForm({ canBuy }: ShowBuyNowProps) {
                   variant="outline"
                   size="icon"
                   className="rounded-l-none size-8"
-                  onClick={increment}
+                  onClick={handleIncrease}
+                  disabled={currentQuantity >= 9999}
                 >
                   <Icons.plus className="size-3" aria-hidden="true" />
                 </Button>
@@ -117,7 +143,7 @@ export default function AddToCartForm({ canBuy }: ShowBuyNowProps) {
             size="sm"
             className="w-full font-semibold mt-2"
           >
-            Add To Cart
+            {cartItem ? 'Update Cart' : 'Add To Cart'}
           </Button>
         </div>
       </form>
