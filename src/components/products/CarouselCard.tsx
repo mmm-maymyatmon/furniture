@@ -11,7 +11,8 @@ import {
 } from '@/components/ui/carousel';
 import { Link } from 'react-router';
 import { Product } from '@/types';
-import { Button } from '../ui/button';
+import { Button } from '@/components/ui/button';
+import { motion } from "motion/react"
 
 interface ProductProps {
   products: Product[];
@@ -27,9 +28,13 @@ export default function CarouselCard({products}: ProductProps) {
   return (
     <Carousel plugins={[plugin.current]} className="w-full mt-10">
       <CarouselContent className="-ml-1">
-        {products.map((product) => (
+        {products.map((product, index) => (
           <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2, duration: 0.5 }}
+            >
               <Card>
                 <CardContent className="flex gap-4 w-full ">
                   <div className="w-30 h-30 bg-gray-200 rounded-lg overflow-hidden relative">
@@ -59,7 +64,7 @@ export default function CarouselCard({products}: ProductProps) {
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </motion.div>
           </CarouselItem>
         ))}
       </CarouselContent>

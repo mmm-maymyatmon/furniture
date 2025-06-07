@@ -1,4 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { motion } from "motion/react"
 
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router';
@@ -8,6 +9,7 @@ import ProductCard from '@/components/products/ProductCard';
 import { Product } from '@/types';
 import BlogCard from '@/components/blogs/BlogCard';
 import { postQuery, productQuery } from '@/api/query';
+
 // import { Skeleton } from '@/components/ui/skeleton';
 
 function Home() {
@@ -66,9 +68,16 @@ function Home() {
   );
 
   return (
+
     <div className="container mx-auto py-10 lg:px-0 px-4">
-      <div className="flex flex-col lg:flex-row justify-between items-center">
-        <div>
+      
+      <div className="flex flex-col gap-10 lg:flex-row justify-between items-center">
+      <motion.div
+      initial={{ opacity: 0, x: 0 }}
+      animate={{ opacity: 1, x: 30 }}
+      exit={{ opacity: 0, x: -30 }}
+      transition={{ duration: 1.5 }}
+    >
           <h1 className="text-3xl mb-5 font-bold text-emeraldGreen lg:text-5xl lg:text-left text-center">
             Modern Interior <br /> Design Studio
           </h1>
@@ -85,11 +94,18 @@ function Home() {
               <Link to="/about">Explore</Link>
             </Button>
           </div>
-        </div>
+        </motion.div>
+        <motion.div
+      initial={{ opacity: 0, x: 30 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -30 }}
+      transition={{ duration: 1.5 }}
+    >
         <div className="lg:mt-0 mt-10">
           <img src={mainImg} alt="mainvisual" />
+          </div>
+          </motion.div>
         </div>
-      </div>
       <div className='sm:mt-30 mt-10'>
       {
         productsData && <CarouselCard products={productsData.products} />
@@ -110,8 +126,15 @@ function Home() {
         sideText="View All Products"
       />
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 my-8">
-        { postsData && productsData.products.slice(0, 4).map((product: Product) => (
-          <ProductCard product={product} key={product.id} />
+          {postsData && productsData.products.slice(0, 4).map((product: Product, index: number) => (
+          <motion.div
+          key={product.id}
+          initial={{ opacity: 0, x: index < 2 ? -50 : 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.5, delay: index < 2 ? 0 : 0.3 }}
+        >
+              <ProductCard product={product} key={product.id} />
+          </motion.div>
         ))}
       </div>
       </div>

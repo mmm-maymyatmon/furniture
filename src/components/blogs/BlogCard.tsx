@@ -1,6 +1,7 @@
 import type { Post } from '@/types';
 import { Link } from 'react-router';
 import moment from 'moment';
+import { motion } from "motion/react"
 
 interface PostProps {
   posts: Post[];
@@ -9,7 +10,13 @@ const imageUrl = import.meta.env.VITE_IMG_URL;
 function BlogCard({ posts }: PostProps) {
   return (
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 my-8">
-      {posts?.map((post) => (
+      {posts?.map((post, index) => (
+        <motion.div
+        key={post.id}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.15, duration: 0.5 }}
+      >
         <Link to={`/blogs/${post.id}`} key={post.id} className="group bg-card text-card-foreground flex flex-col gap-6 border py-6 shadow-sm w-full overflow-hidden rounded-lg pt-0">
           <div className="w-full h-70 overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group-hover:bg-opacity-70 group-hover:bg-black">
             <img
@@ -31,7 +38,8 @@ function BlogCard({ posts }: PostProps) {
             </span>
           </span>
           </div>
-        </Link>
+          </Link>
+          </motion.div>
       ))}
     </div>
   );
