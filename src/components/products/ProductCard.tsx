@@ -13,7 +13,7 @@ import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Button } from '../ui/button';
 import { formatPrice, cn } from '@/lib/utils';
 import { useCartStore } from '@/store/cartStore';
-import { motion } from "motion/react"
+
 
 interface ProductProps extends React.HTMLAttributes<HTMLDivElement> {
   product: Product;
@@ -36,7 +36,6 @@ function ProductCard({ product, className }: ProductProps) {
 
 
   return (
-    
     <Card className={cn('w-full overflow-hidden rounded-lg pt-0', className)}>
       <Link to={`/products/${product.id}`}>
         <CardHeader className="p-0">
