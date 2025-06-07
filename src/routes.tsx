@@ -35,7 +35,7 @@ import ConfirmPasswordPage from './pages/auth/ConfirmPassword';
 import ResetPasswordPage from './pages/auth/ResetPasswordPage';
 import VerifyOtpPage from './pages/auth/VerifyOtpPage';
 import NewPasswordPage from './pages/auth/NewPasswordPage';
-import Services from './pages/services';
+import Services from './pages/Services';
 
 const Blog = lazy(() => import('@/pages/blogs/Blog'));
 const BlogDetails = lazy(() => import('@/pages/blogs/BlogDetails'));
