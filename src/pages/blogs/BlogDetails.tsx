@@ -6,7 +6,7 @@ import RichTextRenderer from '@/components/blogs/RichTextRenderer';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { onePostQuery, postQuery } from '@/api/query';
 import { Post, Tag } from '@/types';
-
+import { motion } from 'motion/react';
 function BlogDetails() {
   // const { postId } = useParams();
   // const post = Posts.find((post) => post.id === postId);
@@ -18,7 +18,14 @@ function BlogDetails() {
   return (
     <div className="container mx-auto py-10 lg:px-0 px-4">
       <div className="flex flex-col gap-8 lg:flex-row justify-between">
+        
         <div className="w-full lg:w-3/4 space-y-8">
+        <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -30 }}
+      transition={{ duration: 1.5 }}
+    >
           <Button variant="outline" asChild>
             <Link to="/blogs" className="flex items-center">
               <Icons.arrowLeft className="mr-2" />
@@ -27,9 +34,9 @@ function BlogDetails() {
           </Button>
 
           {postDetail ? (
-            <div className="space-y-6">
+            <div className="space-y-6 mt-5">
               <div>
-                <h1 className="text-3xl font-bold">{postDetail.post.title}</h1>
+                <h1 className="text-3xl text-emeraldGreen font-bold pb-3">{postDetail.post.title}</h1>
                 <span className="text-sm text-gray-500">
                   by <span className="font-semibold">{postDetail.post.author.fullName}</span> on{' '}
                   <span className="font-semibold">
@@ -39,12 +46,13 @@ function BlogDetails() {
               </div>
 
               <div className="mt-4">
+                
                 <img
                   src={imageURL + postDetail.post.image}
                   alt={postDetail.post.title}
                   loading='lazy'
                   decoding='async'
-                  className="w-full rounded-xl shadow-lg"
+                  className="w-full h-full rounded-xl shadow-lg"
                 />
               </div>
 
@@ -73,13 +81,20 @@ function BlogDetails() {
                 Post not found
               </h2>
             </div>
-          )}
+            )}
+            </motion.div>
         </div>
 
-        <div className="w-full lg:w-1/4 mt-15 space-y-6">
-          <div className="flex items-center gap-2">
+        <div className="w-full lg:w-1/4 space-y-6">
+        <motion.div
+      initial={{ opacity: 0, x: 30 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -30 }}
+      transition={{ duration: 1.5 }}
+    >
+          <div className="flex items-center gap-2 mb-5">
             <Icons.layers className="h-6 w-6 " />
-            <h2 className="text-xl font-semibold">Other Blog Posts</h2>
+            <h2 className="text-xl text-emeraldGreen font-bold">Other Blog Posts</h2>
           </div>
 
           <div className="space-y-4">
@@ -105,7 +120,8 @@ function BlogDetails() {
                 </div>
               </Link>
             ))}
-          </div>
+            </div>
+            </motion.div>
         </div>
       </div>
     </div>

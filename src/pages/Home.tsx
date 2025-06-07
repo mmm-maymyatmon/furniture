@@ -73,8 +73,8 @@ function Home() {
       
       <div className="flex flex-col gap-10 lg:flex-row justify-between items-center">
       <motion.div
-      initial={{ opacity: 0, x: 0 }}
-      animate={{ opacity: 1, x: 30 }}
+      initial={{ opacity: 0, x: -30 }}
+      animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -30 }}
       transition={{ duration: 1.5 }}
     >
