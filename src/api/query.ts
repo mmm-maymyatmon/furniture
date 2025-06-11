@@ -1,3 +1,4 @@
+import { create } from 'zustand';
 import { QueryClient, keepPreviousData } from '@tanstack/react-query';
 import api from './index';
 
@@ -122,3 +123,22 @@ export const oneProductQuery = (id: number) => ({
   queryKey: ['products', 'detail', id],
   queryFn: () => fetchOneProduct(id),
 });
+
+export const createCheckoutSession = async (products: {
+  productId: number;
+  quantity: number;
+  unit_price: number;
+  name: string;
+  image?: string;
+  currency: string;
+}[]) => {
+  try {
+    const response = await api.post('user/create-checkout-session', {
+      products,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error creating checkout session:', error);
+    throw error;
+  }
+};

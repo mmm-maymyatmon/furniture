@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { loadStripe } from "@stripe/stripe-js";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -17,13 +17,53 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import CartItem from "@/components/carts/CartItem";
 import { formatPrice } from "@/lib/utils";
 import { useCartStore } from "@/store/cartStore";
+import { createCheckoutSession } from "@/api/query";
 
 export default function CartSheet() {
   // const itemCount = 4;
   // const amountTotal = 190;
   const itemCount = useCartStore((state) => state.getTotalItems());
   const amountTotal = useCartStore((state) => state.getTotalPrice());
+  
+
   const { carts } = useCartStore();
+
+  const makePayment = async () => { 
+    const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+
+    if (!stripe) {
+      console.error("Stripe failed to load.");
+      return;
+    }
+    const imageUrl = import.meta.env.VITE_IMG_URL;
+  
+    const checkoutItems = carts.map((cart) => ({
+      productId: cart.id,
+      quantity: cart.quantity,
+      unit_price: Math.round(cart.price * 100),
+      name: cart.name,
+      image: cart.image && cart.image.startsWith("http")
+      ? cart.image
+      : imageUrl + cart.image,
+      currency: "usd",
+    }));
+  
+    try {
+      const session = await createCheckoutSession(checkoutItems);
+      console.log("Checkout session:", session);
+  
+      const result = await stripe?.redirectToCheckout({
+        sessionId: session.id,
+      });
+  
+      if (result?.error) {
+        console.error(result.error.message);
+      }
+    } catch (error) {
+      console.error("Error during checkout:", error);
+    }
+  };
+  
 
   return (
     <Sheet modal={false}>
@@ -79,10 +119,11 @@ export default function CartSheet() {
               </div>
               <SheetFooter>
                 <SheetClose asChild>
-                  <Button type="submit" asChild className="w-full">
-                    <Link to="/checkout" aria-label="Check out">
+                  <Button  type="submit" asChild className="w-full">
+                  
+                    <button onClick={makePayment} aria-label="Check out">
                       Continue to checkout
-                    </Link>
+                    </button>
                   </Button>
                 </SheetClose>
               </SheetFooter>
