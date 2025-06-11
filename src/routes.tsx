@@ -37,6 +37,7 @@ import VerifyOtpPage from './pages/auth/VerifyOtpPage';
 import NewPasswordPage from './pages/auth/NewPasswordPage';
 import Services from './pages/Services';
 import Success from './pages/Success';
+import Cancel from './pages/Cancel';
 
 const Blog = lazy(() => import('@/pages/blogs/Blog'));
 const BlogDetails = lazy(() => import('@/pages/blogs/BlogDetails'));
@@ -136,6 +137,11 @@ export const router = createBrowserRouter([
   {
     path: '/success',
     element: <Success />,
+    
+  },
+  {
+    path: '/cancel',
+    element: <Cancel />,
   },
   {
     path: '/register',

@@ -36,6 +36,7 @@ function ProductDetails() {
   const { data: productDetail } = useSuspenseQuery(oneProductQuery(productId));
 
   const { addItem } = useCartStore();
+  
 
   const handleCart = (quantity: number) => {
     addItem({
@@ -103,6 +104,7 @@ function ProductDetails() {
             />
           </div>
           <AddToCartForm canBuy={productDetail.product.status === 'ACTIVE'} onHandleCart={handleCart} idInCart={productDetail.product.id} />
+              
           <Separator className="my-1.5" />
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1" className="border-none">

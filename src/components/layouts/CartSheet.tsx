@@ -119,11 +119,11 @@ export default function CartSheet() {
               </div>
               <SheetFooter>
                 <SheetClose asChild>
-                  <Button  type="submit" asChild className="w-full">
+                  <Button onClick={makePayment}  type="submit" asChild className="w-full"  aria-label="Check out">
                   
-                    <button onClick={makePayment} aria-label="Check out">
+                    <span>
                       Continue to checkout
-                    </button>
+                    </span>
                   </Button>
                 </SheetClose>
               </SheetFooter>

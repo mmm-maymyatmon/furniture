@@ -3,8 +3,6 @@ import { immer } from 'zustand/middleware/immer';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
 interface CartItem {
-  subcategory: string;
-  category: string;
   id: number;
   name: string;
   price: number;
