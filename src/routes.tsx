@@ -36,6 +36,7 @@ import ResetPasswordPage from './pages/auth/ResetPasswordPage';
 import VerifyOtpPage from './pages/auth/VerifyOtpPage';
 import NewPasswordPage from './pages/auth/NewPasswordPage';
 import Services from './pages/Services';
+import Success from './pages/Success';
 
 const Blog = lazy(() => import('@/pages/blogs/Blog'));
 const BlogDetails = lazy(() => import('@/pages/blogs/BlogDetails'));
@@ -122,7 +123,8 @@ export const router = createBrowserRouter([
             action: favoriteAction,
           },
         ],
-      },
+      }
+      
     ],
   },
   {
@@ -130,6 +132,10 @@ export const router = createBrowserRouter([
     element: <Login />,
     loader: loginLoader,
     action: loginAction,
+  },
+  {
+    path: '/success',
+    element: <Success />,
   },
   {
     path: '/register',

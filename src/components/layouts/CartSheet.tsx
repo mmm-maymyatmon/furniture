@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-// import { cartItems } from "@/data/carts";
+// import { cartItems } from "@/npa/carts";
 import { Icons } from "@/components/icons";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import CartItem from "@/components/carts/CartItem";
